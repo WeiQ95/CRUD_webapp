@@ -1,0 +1,13 @@
+package com.fdmgroup.timelessfinds;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TimelessFindsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TimelessFindsApplication.class, args);
+	}
+
+}
