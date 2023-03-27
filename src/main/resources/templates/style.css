@@ -1,0 +1,86 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: aqua;
+  height 10vh;
+  padding: 5vmin;
+}
+
+.splash {
+  display: flex;
+  justify-content: space-between;
+  background-color: yellow;
+  height: 60vh;
+}
+
+.splash .desc {
+  display: flex;
+  justify-content: space-between;
+  background-color: pink;
+  height: 60vh;
+  width: 40vw;
+}
+
+.splash .img{
+  background-color: grey;
+  height: 60vh;
+  width: 60vw;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+  height: 30vh;
+}
+
+.features .card {
+  width: 30vw;
+  border-radius: 5vmin;
+  border: solid black 0.2vmin;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+  height: 30vh;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+  height: 30vh;
+}
+
+.content .desc {
+  display: flex;
+  justify-content: space-between;
+  background-color: yellow;
+  height: 30vh;
+  width: 55vw;
+}
+
+.content .img{
+  background-color: grey;
+  height: 30vh;
+  width: 45vw;
+}
+
+.review {
+  display: flex;
+  justify-content: space-around;
+  background-color: green;
+  height: 40vh;
+}
+
+.review .card {
+  width: 30vw;
+  border-radius: 5vmin;
+  border: solid black 0.2vmin;
+  display: flex;
+  justify-content: center;
+}
