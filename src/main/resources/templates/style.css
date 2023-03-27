@@ -1,9 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Secular+One&display=swap");
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: aqua;
-  height 10vh;
-  padding: 5vmin;
+  height: 5vh;
+  padding: 1vmin, 1vmin, 1vmin 0;
+}
+
+.navbar .logo {
+  font-family: "Secular One", sans-serif;
+  font-size: 2.5vmin;
+  margin-left: 1vw;
+  text-transform: uppercase;
+}
+
+.navbar .right {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.7vmin;
+  margin-right: 1vw;
+}
+
+.navbar .right .link {
+  padding: 2vmin;
+  color: orangered;
 }
 
 .splash {
@@ -14,60 +42,63 @@
 }
 
 .splash .desc {
-  display: flex;
-  justify-content: space-between;
   background-color: pink;
   height: 60vh;
   width: 40vw;
 }
 
-.splash .img{
-  background-color: grey;
+.splash .img {
+  background-image: url("https://picsum.photos/1100/1100");
+  background-size: cover;
   height: 60vh;
   width: 60vw;
 }
 
 .features {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: blue;
-  height: 30vh;
+  height: 35vh;
 }
 
 .features .card {
-  width: 30vw;
-  border-radius: 5vmin;
+  height: 25vh;
+  width: 25vw;
+  border-radius: 0.5vmin;
   border: solid black 0.2vmin;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 4vh;
+}
+
+.features .card .top {
+  display: flex;
+  justify-content: left;
+  padding: 1vmin;
+}
+
+.features .card .bottom {
+  padding: 1vmin;
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
-  background-color: red;
-  height: 30vh;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: red;
   height: 30vh;
 }
 
 .content .desc {
-  display: flex;
-  justify-content: space-between;
   background-color: yellow;
   height: 30vh;
-  width: 55vw;
+  width: 40vw;
 }
 
-.content .img{
-  background-color: grey;
+.content .img {
+  background-image: url("https://picsum.photos/1100/1100");
+  background-size: cover;
   height: 30vh;
-  width: 45vw;
+  width: 40vw;
 }
 
 .review {
@@ -78,9 +109,13 @@
 }
 
 .review .card {
-  width: 30vw;
-  border-radius: 5vmin;
+  height: 35vh;
+  width: 20vw;
+  border-radius: 0.5vmin;
   border: solid black 0.2vmin;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  text-align: center;
+  margin: 2vh;
 }
