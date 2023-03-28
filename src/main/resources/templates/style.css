@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Secular+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300&family=Secular+One&family=Vollkorn&display=swap");
 
 a,
 a:hover {
@@ -23,8 +23,7 @@ a:hover {
 }
 
 .navbar .right {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
+  font-family: "Vollkorn", serif;
   font-size: 1.7vmin;
   margin-right: 1vw;
 }
@@ -38,13 +37,26 @@ a:hover {
   display: flex;
   justify-content: space-between;
   background-color: yellow;
+  overflow: hidden;
   height: 60vh;
 }
 
 .splash .desc {
   background-color: pink;
-  height: 60vh;
   width: 40vw;
+  margin-top: 5vmin;
+  padding: 3vmin;
+}
+
+.splash .desc h1 {
+  font-family: "Vollkorn", serif;
+  font-size: 5vmin;
+}
+
+.splash .desc p {
+  font-family: "Vollkorn", serif;
+  font-style: italic;
+  font-size: 2.5vmin;
 }
 
 .splash .img {
@@ -63,18 +75,30 @@ a:hover {
 
 .features .card {
   height: 25vh;
-  width: 25vw;
+  width: 25vmin;
   border-radius: 0.5vmin;
   border: solid black 0.2vmin;
   display: flex;
   flex-direction: column;
   margin-top: 4vh;
+  overflow: hidden;
 }
 
 .features .card .top {
   display: flex;
   justify-content: left;
+  align-items: center;
   padding: 1vmin;
+}
+
+.features .card .top img {
+  border-radius: 10vmin;
+}
+
+.features .card .top h2 {
+  font-family: "Marck Script", cursive;
+  padding: 1vmin;
+  font-size: 2.5vmin;
 }
 
 .features .card .bottom {
@@ -89,9 +113,18 @@ a:hover {
 }
 
 .content .desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: yellow;
   height: 30vh;
   width: 40vw;
+  padding: 2vmin;
+}
+
+.content .desc h1 {
+  font-family: "Marck Script", cursive;
 }
 
 .content .img {
@@ -101,7 +134,7 @@ a:hover {
   width: 40vw;
 }
 
-.review {
+/* .review {
   display: flex;
   justify-content: space-around;
   background-color: green;
@@ -118,4 +151,8 @@ a:hover {
   justify-content: center;
   text-align: center;
   margin: 2vh;
-}
+} */
+
+/* .footer {
+  background-color: blue;
+} */
