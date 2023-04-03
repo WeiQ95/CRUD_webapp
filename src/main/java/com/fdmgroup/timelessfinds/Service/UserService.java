@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.timelessfinds.Model.User;
-
-import Repository.UserRepository;
+import com.fdmgroup.timelessfinds.Repository.UserRepository;
 
 @Service
 public class UserService {

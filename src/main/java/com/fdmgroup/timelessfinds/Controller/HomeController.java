@@ -1,4 +1,4 @@
-package com.fdmgroup.Controller;
+package com.fdmgroup.timelessfinds.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

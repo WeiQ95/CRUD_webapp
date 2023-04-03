@@ -1,4 +1,4 @@
-package Repository;
+package com.fdmgroup.timelessfinds.Repository;
 
 import java.util.Optional;
 
