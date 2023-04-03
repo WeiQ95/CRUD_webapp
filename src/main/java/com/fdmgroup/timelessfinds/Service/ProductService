@@ -1,0 +1,84 @@
+package com.example.FurnitureShop.ProductService;
+
+import java.nio.file.AccessDeniedException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.FurnitureShop.Model.Product;
+import com.example.FurnitureShop.Model.User;
+import com.example.FurnitureShop.Repository.ProductRepository;
+import com.example.FurnitureShop.Service.ProductService;
+
+@Service
+public class ProductService {
+	@Autowired
+	ProductRepository productRepo;
+	
+	@Override
+	public void addProduct(Product product, User currentUser) throws AccessDeniedException {
+		System.out.println(currentUser.getEmail());
+		System.out.println("Current user isAdmin: " + currentUser.isAdmin());
+		if (!currentUser.isAdmin()) {
+		    throw new AccessDeniedException("You do not have permission to add products");
+		  }
+		product.setCategory(product.getCategory());
+		product.setDescription(product.getDescription());
+		product.setName(product.getName());
+		product.setPrice(product.getPrice());
+		product.setQuantity(product.getQuantity());
+		productRepo.save(product);
+	}
+	
+	@Override 
+	public void removeProduct(Product product, User currentUser) throws AccessDeniedException {
+		if (!currentUser.isAdmin()) {
+			throw new AccessDeniedException("You do not have permission to update products");
+		}
+		productRepo.delete(product);
+	}
+	
+	@Override
+	public void updateProduct(Long id, Product updatedProduct, User currentUser) throws AccessDeniedException {
+		if (!currentUser.isAdmin()) {
+		    throw new AccessDeniedException("You do not have permission to update products");
+		  }
+		Optional<Product> optionalProduct = productRepo.findById(id);
+		
+		if (optionalProduct.isPresent()) {
+			Product product = optionalProduct.get();
+			product.setCategory(updatedProduct.getCategory());
+			product.setDescription(updatedProduct.getDescription());
+			product.setImageUrl(updatedProduct.getImageUrl());
+			product.setName(updatedProduct.getName());
+			product.setPrice(updatedProduct.getPrice());
+			product.setQuantity(updatedProduct.getQuantity());
+			productRepo.save(product);
+		} else {
+			throw new IllegalArgumentException("Product with Id " + id + " not found");
+		}
+	}
+	
+	@Override
+	public Product getProductById(Long id) {
+		return productRepo.findById(id)
+				.orElseThrow();
+	}
+	
+	@Override
+	public List<Product> getAllProducts() {
+		return productRepo.findAll();
+	}
+	
+	@Override
+	public void deleteProduct(Long id, User currentUser) throws AccessDeniedException {
+		if (!currentUser.isAdmin()) {
+			throw new AccessDeniedException("You do not have permission to remove products");
+		}
+		Product product = productRepo.findById(id)
+				.orElseThrow();
+		productRepo.delete(product);
+	}
+}
