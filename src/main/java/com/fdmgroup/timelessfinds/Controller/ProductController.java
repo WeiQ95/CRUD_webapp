@@ -1,4 +1,4 @@
-package com.example.FurnitureShop.Controller;
+package com.fdmgroup.timelessfinds.Controller;
 
 import java.nio.file.AccessDeniedException;
 import java.util.List;
@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-import com.example.FurnitureShop.Model.Product;
-import com.example.FurnitureShop.Model.User;
-import com.example.FurnitureShop.Service.ProductService;
+import com.fdmgroup.timelessfinds.Model.Product;
+import com.fdmgroup.timelessfinds.Model.User;
+import com.fdmgroup.timelessfinds.Service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
