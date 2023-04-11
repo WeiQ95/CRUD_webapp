@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Panel - Add Product</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+    <div class="navbar">
+      <div class="logo">
+        <a href="#">Timeless Finds</a>
+      </div>
+      <div class="right">
+        <a class="link" href="#">About</a>
+        <a class="link" href="#">Contact</a>
+        <a class="link" href="#">FAQs</a>
+        <a class="link" href="#">Products</a>
+      </div>
+    </div>
+
+    <div class="big-title">
+      <h1>Admin Panel - Add Product</h1>
+    </div>
+
+    <div class="display">
+      <form action="/products/add" method="post" enctype="multipart/form-data">
+        <label for="image">Product Image:</label>
+        <input type="file" name="image" id="image" />
+        <br />
+        <label for="name">Product Name:</label>
+        <input type="text" name="name" id="name" required />
+        <br />
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" required />
+        <br />
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required></textarea>
+        <br />
+        <label for="qty">Product Qty:</label>
+        <input type="number" name="qty" id="qty" required />
+        <br />
+        <input type="submit" value="Add Product" />
+      </form>
+    </div>
+  </body>
+</html>
