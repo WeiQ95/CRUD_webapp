@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.fdmgroup.timelessfinds.Model.Product;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
     public Optional<Product>  findById(Long id);
     
 }

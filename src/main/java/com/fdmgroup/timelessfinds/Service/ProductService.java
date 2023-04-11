@@ -1,23 +1,20 @@
-package com.example.FurnitureShop.ProductService;
+package com.fdmgroup.timelessfinds.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fdmgroup.timelessfinds.Model.Product;
+import com.fdmgroup.timelessfinds.Model.User;
+import com.fdmgroup.timelessfinds.Repository.ProductRepository;
 
-import com.example.FurnitureShop.Model.Product;
-import com.example.FurnitureShop.Model.User;
-import com.example.FurnitureShop.Repository.ProductRepository;
-import com.example.FurnitureShop.Service.ProductService;
 
 @Service
 public class ProductService {
 	@Autowired
 	ProductRepository productRepo;
 	
-	@Override
 	public void addProduct(Product product, User currentUser) throws AccessDeniedException {
 		System.out.println(currentUser.getEmail());
 		System.out.println("Current user isAdmin: " + currentUser.isAdmin());
@@ -31,8 +28,7 @@ public class ProductService {
 		product.setQuantity(product.getQuantity());
 		productRepo.save(product);
 	}
-	
-	@Override 
+	 
 	public void removeProduct(Product product, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to update products");
@@ -40,7 +36,6 @@ public class ProductService {
 		productRepo.delete(product);
 	}
 	
-	@Override
 	public void updateProduct(Long id, Product updatedProduct, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 		    throw new AccessDeniedException("You do not have permission to update products");
@@ -61,18 +56,15 @@ public class ProductService {
 		}
 	}
 	
-	@Override
 	public Product getProductById(Long id) {
 		return productRepo.findById(id)
 				.orElseThrow();
 	}
 	
-	@Override
 	public List<Product> getAllProducts() {
 		return productRepo.findAll();
 	}
 	
-	@Override
 	public void deleteProduct(Long id, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to remove products");

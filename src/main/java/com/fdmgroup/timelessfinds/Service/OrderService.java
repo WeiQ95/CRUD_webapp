@@ -21,7 +21,7 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
-    public Order getOrderDetail(int orderId) {
+    public Order getOrderDetail(long orderId) {
         Optional<Order> order = this.orderRepository.findById(orderId);
         return order.isPresent() ? order.get() : null;
     }
@@ -38,15 +38,15 @@ public class OrderService {
             Optional<Product> product = productRepository.findById(productId);
             if (product.isPresent()) {
                 Product product1 = product.get();
-                if (product1.getAvailableQuantity() < cart.getQuantity()) {
-                    singleCartAmount = product1.getSellingPrice() * product1.getAvailableQuantity();
-                    cart.setQuantity(product1.getAvailableQuantity());
+                if (product1.getQuantity() < cart.getQuantity()) {
+                    singleCartAmount = product1.getPrice() * product1.getQuantity();
+                    cart.setQuantity(product1.getQuantity());
                 } else {
-                    singleCartAmount = cart.getQuantity() * product1.getSellingPrice();
-                    availableQuantity = product1.getAvailableQuantity() - cart.getQuantity();
+                    singleCartAmount = cart.getQuantity() * product1.getPrice();
+                    availableQuantity = product1.getQuantity() - cart.getQuantity();
                 }
                 totalCartAmount = totalCartAmount + singleCartAmount;
-                product1.setAvailableQuantity(availableQuantity);
+                product1.setQuantity(availableQuantity);
                 availableQuantity=0;
                 cart.setProductName(product1.getName());
                 cart.setAmount(singleCartAmount);
