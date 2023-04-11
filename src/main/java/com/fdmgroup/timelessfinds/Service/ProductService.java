@@ -28,7 +28,7 @@ public class ProductService {
 		product.setQuantity(product.getQuantity());
 		productRepo.save(product);
 	}
-	 
+
 	public void removeProduct(Product product, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to update products");
