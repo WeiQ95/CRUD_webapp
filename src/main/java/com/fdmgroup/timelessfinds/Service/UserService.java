@@ -8,9 +8,14 @@ import com.fdmgroup.timelessfinds.Repository.UserRepository;
 
 @Service
 public class UserService {
-    @Autowired
+
 	private UserRepository userRepo;
 	
+    @Autowired
+	public UserService(UserRepository userRepo) {
+		this.userRepo = userRepo;
+	}
+
 	public void save(User user) {
 		user.setPassword(user.getPassword());
 		userRepo.save(user);

@@ -20,10 +20,14 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ProductController {
 
-    @Autowired
     private ProductService productService;
 
-    @GetMapping("/productslist")
+    @Autowired
+    public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
+
+	@GetMapping("/productslist")
     public String getAllProducts(Model model, HttpSession session) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
