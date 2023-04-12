@@ -9,6 +9,6 @@ import com.fdmgroup.timelessfinds.Model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    public Optional<Product>  findById(Long id);
+    public Optional<Product>  findByProductId(Long productId);
     
 }

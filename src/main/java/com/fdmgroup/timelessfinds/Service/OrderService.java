@@ -26,31 +26,37 @@ public class OrderService {
         return order.isPresent() ? order.get() : null;
     }
 
-    public double getCartAmount(List<Cart> cartList) {
+    public double getCartAmount(List<Product> cartList) {
 
         double totalCartAmount = 0f;
         double singleCartAmount = 0f;
         int availableQuantity = 0;
 
-        for (Cart cart : cartList) {
+        for (Product item : cartList) {
 
-            int productId = cart.getProductId();
-            Optional<Product> product = productRepository.findById(productId);
+            long itemId = item.getProductId();
+            Optional<Product> product = productRepository.findByProductId(itemId);
+            
             if (product.isPresent()) {
-                Product product1 = product.get();
-                if (product1.getQuantity() < cart.getQuantity()) {
-                    singleCartAmount = product1.getPrice() * product1.getQuantity();
-                    cart.setQuantity(product1.getQuantity());
-                } else {
-                    singleCartAmount = cart.getQuantity() * product1.getPrice();
-                    availableQuantity = product1.getQuantity() - cart.getQuantity();
+                Product productInRepo = product.get();
+                
+                //if demand greater than qty in stock
+                if (item.getQuantity() > productInRepo.getQuantity()) {
+                    singleCartAmount = productInRepo.getPrice() * productInRepo.getQuantity();
+                    
+                    //set quantity to be that of available stock
+                    item.setQuantity(productInRepo.getQuantity());
+                } 
+                else {
+                    singleCartAmount = productInRepo.getPrice() * item.getQuantity();
+                    availableQuantity = productInRepo.getQuantity() - item.getQuantity();
                 }
-                totalCartAmount = totalCartAmount + singleCartAmount;
-                product1.setQuantity(availableQuantity);
-                availableQuantity=0;
-                cart.setProductName(product1.getName());
-                cart.setAmount(singleCartAmount);
-                productRepository.save(product1);
+                totalCartAmount += singleCartAmount;
+                productInRepo.setQuantity(availableQuantity);
+                //availableQuantity=0;
+                //.setProductName(productInRepo.getName());
+                //.setAmount(singleCartAmount);
+                productRepository.save(productInRepo);
             }
         }
         return totalCartAmount;

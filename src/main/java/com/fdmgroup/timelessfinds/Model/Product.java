@@ -5,14 +5,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="products")
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="product_id")
+	private Long productId;
 	
 	@Column(name="name")
 	private String name;
@@ -32,6 +36,10 @@ public class Product {
 	@Column(name="image")
 	private String imageUrl;
 	
+	@ManyToOne
+	@JoinColumn(name = "fk_cart_id")
+	private Cart cart;
+	
 	//Constructors
 	public Product() {
 		super();
@@ -49,12 +57,12 @@ public class Product {
 
 
 	//Getters and Setters
-	public Long getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getName() {
