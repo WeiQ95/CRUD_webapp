@@ -14,7 +14,7 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "Orders",
-        uniqueConstraints = { @UniqueConstraint(columnNames = "Order_Num") })
+        uniqueConstraints = { @UniqueConstraint(columnNames = "order_id") })
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -2576670215015463100L;
@@ -26,9 +26,6 @@ public class Order implements Serializable {
     @Column(name = "Order_Date", nullable = false)
     private Date orderDate;
 
-    @Column(name = "Order_Num", nullable = false)
-    private int orderNum;
-
     @Column(name = "Amount", nullable = false)
     private double amount;
 	
@@ -36,8 +33,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
     
-	@OneToOne
-	@JoinColumn(name = "cart_id", nullable = false)
+	@OneToOne(mappedBy = "order")
 	private Cart cart;
 
     @Column(name = "Customer_Name", length = 255, nullable = false)
@@ -66,14 +62,6 @@ public class Order implements Serializable {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public int getOrderNum() {
-        return orderNum;
-    }
-
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
     }
 
     public double getAmount() {

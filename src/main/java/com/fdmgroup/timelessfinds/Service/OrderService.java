@@ -1,10 +1,8 @@
 package com.fdmgroup.timelessfinds.Service;
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
-import com.fdmgroup.timelessfinds.Model.Cart;
 import com.fdmgroup.timelessfinds.Model.Order;
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Repository.OrderRepository;

@@ -12,9 +12,14 @@ import com.fdmgroup.timelessfinds.Repository.ProductRepository;
 
 @Service
 public class ProductService {
-	@Autowired
+
 	ProductRepository productRepo;
 	
+	@Autowired
+	public ProductService(ProductRepository productRepo) {
+		this.productRepo = productRepo;
+	}
+
 	public void addProduct(Product product, User currentUser) throws AccessDeniedException {
 		System.out.println(currentUser.getEmail());
 		System.out.println("Current user isAdmin: " + currentUser.isAdmin());
