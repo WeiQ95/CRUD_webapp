@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Model.User;
 import com.fdmgroup.timelessfinds.Service.ProductService;
@@ -27,7 +26,7 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@GetMapping("/productslist")
+    @GetMapping("/productslist")
     public String getAllProducts(Model model, HttpSession session) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);

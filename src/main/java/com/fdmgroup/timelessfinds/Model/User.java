@@ -1,10 +1,13 @@
 package com.fdmgroup.timelessfinds.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,7 +16,8 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="user_id")
+	private Long userId;
 	
 	@Column(name="email", unique=true)
 	private String email;
@@ -27,14 +31,16 @@ public class User {
 	@Column(name="is_admin")
 	private boolean isAdmin;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders= new ArrayList<>();
 	
 	//Getters and Setters
 	public Long getId() {
-		return id;
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getEmail() {
@@ -68,5 +74,15 @@ public class User {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
+	
 }
 

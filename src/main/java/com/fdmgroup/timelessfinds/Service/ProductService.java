@@ -3,10 +3,8 @@ package com.fdmgroup.timelessfinds.Service;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Model.User;
 import com.fdmgroup.timelessfinds.Repository.ProductRepository;
@@ -35,7 +33,7 @@ public class ProductService {
 		product.setQuantity(product.getQuantity());
 		productRepo.save(product);
 	}
-	
+
 	public void removeProduct(Product product, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to update products");
@@ -43,12 +41,11 @@ public class ProductService {
 		productRepo.delete(product);
 	}
 	
-	
 	public void updateProduct(Long id, Product updatedProduct, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 		    throw new AccessDeniedException("You do not have permission to update products");
 		  }
-		Optional<Product> optionalProduct = productRepo.findById(id);
+		Optional<Product> optionalProduct = productRepo.findByProductId(id);
 		
 		if (optionalProduct.isPresent()) {
 			Product product = optionalProduct.get();
@@ -64,23 +61,20 @@ public class ProductService {
 		}
 	}
 	
-	
 	public Product getProductById(Long id) {
-		return productRepo.findById(id)
+		return productRepo.findByProductId(id)
 				.orElseThrow();
 	}
-	
 	
 	public List<Product> getAllProducts() {
 		return productRepo.findAll();
 	}
 	
-	
 	public void deleteProduct(Long id, User currentUser) throws AccessDeniedException {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to remove products");
 		}
-		Product product = productRepo.findById(id)
+		Product product = productRepo.findByProductId(id)
 				.orElseThrow();
 		productRepo.delete(product);
 	}
