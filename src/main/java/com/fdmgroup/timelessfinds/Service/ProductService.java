@@ -15,7 +15,7 @@ import com.fdmgroup.timelessfinds.Repository.ProductRepository;
 @Service
 public class ProductService {
 
-	ProductRepository productRepo;
+	private ProductRepository productRepo;
 	
 	@Autowired
 	public ProductService(ProductRepository productRepo) {
@@ -83,5 +83,9 @@ public class ProductService {
 		Product product = productRepo.findById(id)
 				.orElseThrow();
 		productRepo.delete(product);
+	}
+
+	public List<Product> findProductsByMatchingName(String searchTerm) {
+		return productRepo.findProductsByMatchingName(searchTerm);
 	}
 }
