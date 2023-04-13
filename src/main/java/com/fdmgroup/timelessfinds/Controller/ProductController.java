@@ -88,4 +88,13 @@ public class ProductController {
         model.addAttribute("product", product);
         return "redirect:/productslist";
     }
+    
+    @PostMapping("/productcatalogue")
+	public String goToProductCatalogue(Model model, String searchTerm) {
+    	List<Product> products = productService.findProductsByMatchingName(searchTerm);
+    	model.addAttribute("products", products);
+		return "productcatalogue";
+	}
+
+    
 }
