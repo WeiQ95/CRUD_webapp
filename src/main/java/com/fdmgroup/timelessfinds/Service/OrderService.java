@@ -1,10 +1,8 @@
 package com.fdmgroup.timelessfinds.Service;
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
-import com.fdmgroup.timelessfinds.Model.Cart;
 import com.fdmgroup.timelessfinds.Model.Order;
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Repository.OrderRepository;
@@ -21,36 +19,42 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
-    public Order getOrderDetail(int orderId) {
+    public Order getOrderDetail(long orderId) {
         Optional<Order> order = this.orderRepository.findById(orderId);
         return order.isPresent() ? order.get() : null;
     }
 
-    public double getCartAmount(List<Cart> cartList) {
+    public double getCartAmount(List<Product> cartList) {
 
         double totalCartAmount = 0f;
         double singleCartAmount = 0f;
         int availableQuantity = 0;
 
-        for (Cart cart : cartList) {
+        for (Product item : cartList) {
 
-            int productId = cart.getProductId();
-            Optional<Product> product = productRepository.findById(productId);
+            long itemId = item.getProductId();
+            Optional<Product> product = productRepository.findByProductId(itemId);
+            
             if (product.isPresent()) {
-                Product product1 = product.get();
-                if (product1.getAvailableQuantity() < cart.getQuantity()) {
-                    singleCartAmount = product1.getSellingPrice() * product1.getAvailableQuantity();
-                    cart.setQuantity(product1.getAvailableQuantity());
-                } else {
-                    singleCartAmount = cart.getQuantity() * product1.getSellingPrice();
-                    availableQuantity = product1.getAvailableQuantity() - cart.getQuantity();
+                Product productInRepo = product.get();
+                
+                //if demand greater than qty in stock
+                if (item.getQuantity() > productInRepo.getQuantity()) {
+                    singleCartAmount = productInRepo.getPrice() * productInRepo.getQuantity();
+                    
+                    //set quantity to be that of available stock
+                    item.setQuantity(productInRepo.getQuantity());
+                } 
+                else {
+                    singleCartAmount = productInRepo.getPrice() * item.getQuantity();
+                    availableQuantity = productInRepo.getQuantity() - item.getQuantity();
                 }
-                totalCartAmount = totalCartAmount + singleCartAmount;
-                product1.setAvailableQuantity(availableQuantity);
-                availableQuantity=0;
-                cart.setProductName(product1.getName());
-                cart.setAmount(singleCartAmount);
-                productRepository.save(product1);
+                totalCartAmount += singleCartAmount;
+                productInRepo.setQuantity(availableQuantity);
+                //availableQuantity=0;
+                //.setProductName(productInRepo.getName());
+                //.setAmount(singleCartAmount);
+                productRepository.save(productInRepo);
             }
         }
         return totalCartAmount;

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Model.User;
 import com.fdmgroup.timelessfinds.Service.ProductService;
@@ -20,8 +19,12 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ProductController {
 
-    @Autowired
     private ProductService productService;
+
+    @Autowired
+    public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
     @GetMapping("/productslist")
     public String getAllProducts(Model model, HttpSession session) {
@@ -85,4 +88,13 @@ public class ProductController {
         model.addAttribute("product", product);
         return "redirect:/productslist";
     }
+    
+    @PostMapping("/productcatalogue")
+	public String goToProductCatalogue(Model model, String searchTerm) {
+    	List<Product> products = productService.findProductsByMatchingName(searchTerm);
+    	model.addAttribute("products", products);
+		return "productcatalogue";
+	}
+
+    
 }

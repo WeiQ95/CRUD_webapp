@@ -17,9 +17,14 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
-    @Autowired
+
 	private UserService userService;
-	
+    
+    @Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		model.addAttribute("user", new User());

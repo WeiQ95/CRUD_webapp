@@ -1,86 +1,79 @@
 package com.fdmgroup.timelessfinds.Model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="cart_id")
+	private Long cartId;
+	
+    @Column(name = "Cart_Date", nullable = false)
+    private Date cartDate;
+	
+	@OneToOne
+	@JoinColumn(name = "order_id", unique = true)
+	private Order order;
+	
+	@ManyToMany
+	@JoinTable(name="cart_product", joinColumns=
+	@JoinColumn(name="fk_cart_id"), 	inverseJoinColumns=
+	@JoinColumn(name="fk_product_id")
+	) 
+	private List<Product> cart = new ArrayList<>();
+	
+	public Long getCartId() {
+		return cartId;
+	}
 
-    private int productId;
-    private String productName;
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
+	}
 
-    private int quantity;
-    private double amount;
+	public List<Product> getCart() {
+		return cart;
+	}
 
-    public Cart() {
-    }
+	public void setCart(List<Product> cart) {
+		this.cart = cart;
+	}
 
-    public Cart(int productId, String productName, int quantity, double amount) {
-        this.productId = productId;
-        this.productName = productName;
-        this.quantity = quantity;
-        this.amount = amount;
-    }
-
-    public Cart(int productId, int quantity) {
-        this.productId = productId;
-        this.quantity = quantity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double singleCartAmount) {
-        this.amount = singleCartAmount;
-    }
-
-    @Override
-    public String toString() {
-        return "ShoppingCart{" +
-                "id=" + id +
-                ", productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", quantity=" + quantity +
-                ", amount=" + amount +
-                '}';
-    }
-    
+	public void addProduct(Product product) {
+		cart.add(product);
+	}
+	
+	public void removeProduct(Product product) {
+		cart.remove(product);
+	}
+	
+	public void updateProductinCart(Product product) {
+		for (int i=0; i < cart.size(); i++) {
+			if(cart.get(i).getProductId() == product.getProductId()) {
+				cart.set(i, product);
+			}
+		}
+	}
+	
+	public String getListOfProduct() {
+		String listOfItems = "";
+		for (Product pdt: cart) {
+			listOfItems += pdt.getProductId() +": "+pdt.getName() +", "+ pdt.getPrice()+", "+ pdt.getQuantity() + "\n";
+		}
+		return listOfItems;
+	}
+	
+	
 }

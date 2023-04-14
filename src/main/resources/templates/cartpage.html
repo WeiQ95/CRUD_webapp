@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <div class="big-title">
+      <h1>List of items</h1>
+    </div>
+    
+    <div class="display">
+      <form action="/products/add" method="post" enctype="multipart/form-data">
+        <label for="image">Product Image:</label>
+        <input type="file" name="image" id="image" />
+        <br />
+        <label for="name">Product Name:</label>
+        <br />
+        <label for="price">Price:</label>
+        <br />
+        <input type="submit" value="Back" />
+      </form>
+    </div>
+</body>
+</html>

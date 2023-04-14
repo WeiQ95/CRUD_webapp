@@ -10,9 +10,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="products")
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="product_id")
+	private Long productId;
 	
 	@Column(name="name")
 	private String name;
@@ -49,12 +51,12 @@ public class Product {
 
 
 	//Getters and Setters
-	public Long getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getName() {
