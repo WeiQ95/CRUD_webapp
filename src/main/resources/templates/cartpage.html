@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Cart</title>
@@ -10,17 +10,47 @@
       <h1>List of items</h1>
     </div>
     
-    <div class="display">
-      <form action="/products/add" method="post" enctype="multipart/form-data">
-        <label for="image">Product Image:</label>
-        <input type="file" name="image" id="image" />
-        <br />
-        <label for="name">Product Name:</label>
-        <br />
-        <label for="price">Price:</label>
-        <br />
-        <input type="submit" value="Back" />
-      </form>
-    </div>
+<!--     <div class="display"> -->
+<!--       <form action="/products/add" method="post" enctype="multipart/form-data"> -->
+<!--         <label for="image">Product Image:</label> -->
+<!--         <input type="file" name="image" id="image" /> -->
+<!--         <br /> -->
+<!--         <label for="name">Product Name:</label> -->
+<!--         <br /> -->
+<!--         <label for="price">Price:</label> -->
+<!--         <br /> -->
+<!--         <input type="submit" value="Back" /> -->
+<!--       </form> -->
+<!--     </div> -->
+    
+	<hr>
+	<table>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Product Name</th>
+			<th>Category</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Image</th>
+		</tr>
+		</thead>
+		
+		<tbody> 
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}">ID</td>
+                <td th:text="${product.name}">Product Name</td>
+                <td th:text="${product.category}">Category</td>
+                <td th:text="${product.quantity}">Quantity</td>
+                <td th:text="${product.price}">Price</td>
+                <td th:text="${product.imageUrl}">Image</td>
+                <td><button class="button">Home</button></td>
+            </tr>
+		</tbody>
+	</table>
+
+<br>
+<a th:href="@{/}"><button class="button">Home</button></a>
+<br>
 </body>
 </html>

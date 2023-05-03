@@ -2,8 +2,12 @@ package com.fdmgroup.timelessfinds.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,11 +24,12 @@ public class Order implements Serializable {
     private static final long serialVersionUID = -2576670215015463100L;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "order_id", length = 50)
     private Long orderId;
 
     @Column(name = "Order_Date", nullable = false)
-    private Date orderDate;
+    private final Date orderDate = new Date();
 
     @Column(name = "Amount", nullable = false)
     private double amount;
@@ -33,7 +38,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
     
-	@OneToOne(mappedBy = "order")
+	@OneToOne(mappedBy = "order",cascade = {CascadeType.ALL})
 	private Cart cart;
 
     @Column(name = "Customer_Name", length = 255, nullable = false)
@@ -48,7 +53,19 @@ public class Order implements Serializable {
     @Column(name = "Customer_Phone", length = 128, nullable = false)
     private String customerPhone;
 
-    public Long getId() {
+    public Order() {
+	}
+
+	public Order(double amount, String customerName, 
+    		     String customerAddress, String customerEmail, String customerPhone) {
+		this.amount = amount;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+		this.customerEmail = customerEmail;
+		this.customerPhone = customerPhone;
+	}
+
+	public Long getId() {
         return orderId;
     }
 
@@ -58,10 +75,6 @@ public class Order implements Serializable {
 
     public Date getOrderDate() {
         return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
 
     public double getAmount() {

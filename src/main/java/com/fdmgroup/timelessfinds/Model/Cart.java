@@ -3,6 +3,8 @@ package com.fdmgroup.timelessfinds.Model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,9 +24,9 @@ public class Cart {
 	private Long cartId;
 	
     @Column(name = "Cart_Date", nullable = false)
-    private Date cartDate;
+    private final Date cartDate = new Date();
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "order_id", unique = true)
 	private Order order;
 	
@@ -34,7 +36,7 @@ public class Cart {
 	@JoinColumn(name="fk_product_id")
 	) 
 	private List<Product> cart = new ArrayList<>();
-	
+
 	public Long getCartId() {
 		return cartId;
 	}
@@ -49,6 +51,14 @@ public class Cart {
 
 	public void setCart(List<Product> cart) {
 		this.cart = cart;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public void addProduct(Product product) {

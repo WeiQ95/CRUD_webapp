@@ -45,7 +45,7 @@ public class ProductService {
 		if (!currentUser.isAdmin()) {
 		    throw new AccessDeniedException("You do not have permission to update products");
 		  }
-		Optional<Product> optionalProduct = productRepo.findByProductId(id);
+		Optional<Product> optionalProduct = productRepo.findById(id);
 		
 		if (optionalProduct.isPresent()) {
 			Product product = optionalProduct.get();
@@ -62,7 +62,7 @@ public class ProductService {
 	}
 	
 	public Product getProductById(Long id) {
-		return productRepo.findByProductId(id)
+		return productRepo.findById(id)
 				.orElseThrow();
 	}
 	
@@ -74,7 +74,7 @@ public class ProductService {
 		if (!currentUser.isAdmin()) {
 			throw new AccessDeniedException("You do not have permission to remove products");
 		}
-		Product product = productRepo.findByProductId(id)
+		Product product = productRepo.findById(id)
 				.orElseThrow();
 		productRepo.delete(product);
 	}

@@ -34,6 +34,18 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders= new ArrayList<>();
 	
+	public User() {
+		super();
+	}
+
+	public User(String email, String username, String password, boolean isAdmin) {
+		super();
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.isAdmin = isAdmin;
+	}
+
 	//Getters and Setters
 	public Long getId() {
 		return userId;

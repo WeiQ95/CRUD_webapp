@@ -33,7 +33,7 @@ public class OrderService {
         for (Product item : cartList) {
 
             long itemId = item.getProductId();
-            Optional<Product> product = productRepository.findByProductId(itemId);
+            Optional<Product> product = productRepository.findById(itemId);
             
             if (product.isPresent()) {
                 Product productInRepo = product.get();
@@ -51,9 +51,6 @@ public class OrderService {
                 }
                 totalCartAmount += singleCartAmount;
                 productInRepo.setQuantity(availableQuantity);
-                //availableQuantity=0;
-                //.setProductName(productInRepo.getName());
-                //.setAmount(singleCartAmount);
                 productRepository.save(productInRepo);
             }
         }

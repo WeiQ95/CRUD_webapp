@@ -11,7 +11,8 @@ import com.fdmgroup.timelessfinds.Model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    public Optional<Product>  findById(Long id);
+    
+	public Optional<Product> findById(Long id);
 
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:searchTerm%")
 	public List<Product> findProductsByMatchingName(String searchTerm);
