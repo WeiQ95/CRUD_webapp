@@ -18,14 +18,14 @@
         </thead>
         <tbody>
             <tr th:each="product : ${products}">
-                <td th:text="${product.id}"></td>
+                <td th:text="${product.productId}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.quantity}"></td>
-                <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit</a></td>
-                <td><a th:href="@{/delete/{id}(id=${product.id})}">Delete</a></td>
+                <td><a th:href="@{/edit/{id}(id=${product.productId})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${product.productId})}">Delete</a></td>
             </tr>
         </tbody>
     </table>
