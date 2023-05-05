@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Timeless Finds - Furniture Ecommerce Site</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
   </head>
   <body>
     <div class="container">
@@ -11,8 +11,8 @@
           <a href="#">Timeless Finds</a>
         </div>
         <div class="right">
-          <a class="link" href="#">About</a>
-          <a class="link" href="#">Contact</a>
+          <a class="link" href="#about">About</a>
+          <a class="link" href="#contact">Contact</a>
           <a class="link" href="#">FAQs</a>
           <a class="link" href="#">Products</a>
           
@@ -90,6 +90,7 @@
 
       <div class="content">
         <div class="desc">
+          <div id="about">
           <h1>About Us</h1>
 					<br />
           <p>
@@ -107,6 +108,7 @@
             beautiful, one-of-a-kind furniture.
           </p>
         </div>
+      </div>
         <div class="img-about"></div>
       </div>
 
@@ -129,6 +131,7 @@
 
 			<div class="content">
         <div class="desc">
+          <div id="contact">
           <h1>Contact Us</h1>
 					<br />
           <p>
@@ -141,6 +144,7 @@
 						Facebook: Timeless Finds - Second-hand Vintage Furniture
           </p>
         </div>
+      </div>
         <div class="img-map"></div>
       </div>
 
