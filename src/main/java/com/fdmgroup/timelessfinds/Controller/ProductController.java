@@ -96,5 +96,12 @@ public class ProductController {
 		return "productcatalogue";
 	}
 
+    @GetMapping("/productcatalogue")
+    public String getAllProductCatalogue(Model model, HttpSession session) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "productcatalogue";
+    }
+
     
 }
