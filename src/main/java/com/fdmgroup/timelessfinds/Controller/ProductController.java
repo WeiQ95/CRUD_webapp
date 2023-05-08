@@ -32,7 +32,7 @@ public class ProductController {
         model.addAttribute("products", products);
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("loggedInUser", loggedInUser);
-        return "/productslist";
+        return "productslist";
     }
 
     @GetMapping("/create")
@@ -95,6 +95,13 @@ public class ProductController {
     	model.addAttribute("products", products);
 		return "productcatalogue";
 	}
+
+    @GetMapping("/productcatalogue")
+    public String getAllProductCatalogue(Model model, HttpSession session) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "productcatalogue";
+    }
 
     
 }

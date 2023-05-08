@@ -91,7 +91,7 @@ a:hover {
 }
 
 .splash .img {
-  background-image: url("./images/splash.jpg");
+  background-image: url("/images/splash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 300vh;
@@ -174,19 +174,19 @@ a:hover {
 } */
 
 .content .img-about {
-  background-image: url("./images/abt.png");
+  background-image: url("/images/abt.png");
   background-size: cover;
   min-width: 40vw;
 }
 
 .content .img-mission {
-  background-image: url("./images/sus.jpg");
+  background-image: url("/images/sus.jpg");
   background-size: cover;
   min-width: 40vw;
 }
 
 .content .img-map {
-  background-image: url("./images/map.png");
+  background-image: url("/images/map.png");
   background-size: cover;
   min-width: 40vw;
 }
