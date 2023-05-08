@@ -32,7 +32,7 @@ public class ProductController {
         model.addAttribute("products", products);
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("loggedInUser", loggedInUser);
-        return "/productslist";
+        return "productslist";
     }
 
     @GetMapping("/create")
