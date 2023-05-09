@@ -9,7 +9,7 @@
       <div class="navbar">
         <div class="logo">
           <a href="/">
-            <img src="/images/logo.png" alt="logo" width="370" height="200">
+            <img class="timeless-finds-logo" src="/images/logo.png" alt="logo" width="260" height="125">
             </a>
         </div>
         <div class="right">
@@ -21,11 +21,12 @@
           
           <a class="link" href="#">View Previous Orders</a>
           <!-- search bar -->
-          <div>
-          	<form action="/productcatalogue" method="post">
-          	  <input type="text" placeholder="Search.." name="searchTerm">
-              <button type="submit">Search</button> 
-          	</form>
+            <div class="searchbar">
+          	  <form action="/productcatalogue" method="post">
+          	    <input type="text" placeholder="Search.." name="searchTerm">
+                <button type="submit">Search</button> 
+          	  </form>
+            </div>
           </div>
         </div>
       </div>
@@ -37,8 +38,8 @@
           <p>
             Where vintage meets modern.
           </p>		
-					<br /> 
-					<button type="button" class="splash-btn">Shop Now!</button>
+					<br />
+					<button type="button" class="splash-btn" onclick="document.location='/productcatalogue'">Shop Now!</button>         
         </div>
         <div class="img"></div>
       </div>
