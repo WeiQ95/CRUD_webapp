@@ -103,5 +103,11 @@ public class ProductController {
         return "productcatalogue";
     }
 
+    @GetMapping("/productcatalogue2")
+    public String getAllProductCatalogue2(Model model, HttpSession session) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "productcatalogue2";
+    }
     
 }

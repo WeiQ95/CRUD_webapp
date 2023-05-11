@@ -58,17 +58,21 @@ a:hover {
 .navbar .logo {
   font-family: "Secular One", sans-serif;
   font-size: 5vmin;
-  margin-left: 5vw;
+  margin-left: 4vw;
   text-transform: uppercase;
-  padding-top: 15px;
-  display: flex;
+  display: inline-block;
   min-width: 40vw;
 }
 
-img[src="/images/logo.png"] {
+/* img[src="/images/logo.png"] {
   max-width: 260px;
   min-width: 200px;
-}
+} */
+
+/* #timeless-finds-logo{
+  width:"225" ;
+  height:"60"
+} */
 
 .navbar .right {
   font-size: 2.5vmin;
@@ -234,6 +238,20 @@ img[src="/images/logo.png"] {
   color: #ffffff;
 }
 
+.title {
+  color: var(--dark-font-hover);
+  font-family: var(--font-family-rubik);
+  font-size: var(--font-size-x1);
+  font-weight: 700;
+  height: 46px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 120px;
+  margin-top: 193px;
+  width: 1200px;
+  z-index: 3;
+}
+
 table {
   width: 100%;
   background-color: #ffffff;
@@ -339,4 +357,69 @@ form textarea {
 
 .navbar .searchbar button:hover {
   background: #ccc;
+}
+
+/* .product-body {
+  display: flex;
+  height: 334px;
+  margin-top: 43px;
+  width: 1200px;
+  z-index: 1;
+} */
+
+.frame-12 {
+  display: flex;
+  gap: 50px;
+  height: 334px;
+  margin-left: 100px;
+  margin-top: 43px;
+  width: 1080px;
+  z-index: 1;
+}
+
+.frame-13 {
+  display: flex;
+  gap: 50px;
+  height: 334px;
+  margin-left: 100px;
+  margin-top: 42px;
+  width: 1080px;
+  z-index: 2;
+}
+
+.item-card-default {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 338px;
+  margin-left: 16px;
+  margin-top: 11px;
+  position: relative;
+  width: 225px;
+}
+
+.item-card-default-1 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 338px;
+  margin-top: 11px;
+  position: relative;
+  width: 225px;
+}
+
+.name {
+  align-self: stretch;
+  height: 44px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+}
+
+.rectangle-1 {
+  background-color: gray;
+  height: 225px;
+  min-width: 225px;
+  position: relative;
+  z-index: -1;
 }
