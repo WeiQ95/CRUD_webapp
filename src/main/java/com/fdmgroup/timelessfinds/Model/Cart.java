@@ -26,9 +26,9 @@ public class Cart {
     @Column(name = "Cart_Date", nullable = false)
     private final Date cartDate = new Date();
 	
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "order_id", unique = true)
-	private Order order;
+	@OneToOne(mappedBy = "cart")
+	@JoinColumn(name = "userId", unique = true)
+	private User user;
 	
 	@ManyToMany
 	@JoinTable(name="cart_product", joinColumns=
@@ -53,12 +53,12 @@ public class Cart {
 		this.cart = cart;
 	}
 
-	public Order getOrder() {
-		return order;
+	public User getUser() {
+		return user;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void addProduct(Product product) {
