@@ -414,6 +414,7 @@ form textarea {
   letter-spacing: 0;
   line-height: normal;
   position: relative;
+  z-index: -1;
 }
 
 .rectangle-1 {
