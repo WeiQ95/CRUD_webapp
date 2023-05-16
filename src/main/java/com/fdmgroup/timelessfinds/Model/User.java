@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +32,10 @@ public class User {
 	
 	@Column(name="is_admin")
 	private boolean isAdmin;
+	
+	@OneToOne
+	@JoinColumn(name="cart_id")
+	private Cart cart;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders= new ArrayList<>();
@@ -93,6 +99,10 @@ public class User {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 	
