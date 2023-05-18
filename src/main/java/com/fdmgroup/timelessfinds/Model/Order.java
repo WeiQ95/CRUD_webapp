@@ -37,9 +37,6 @@ public class Order implements Serializable {
     @ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-    
-	@OneToOne(mappedBy = "order",cascade = {CascadeType.ALL})
-	private Cart cart;
 
     @Column(name = "Customer_Name", length = 255, nullable = false)
     private String customerName;
@@ -123,14 +120,6 @@ public class Order implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
 	}
 
 }

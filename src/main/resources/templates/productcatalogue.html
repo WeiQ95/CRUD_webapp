@@ -1,29 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Product Catalogue</title>
-</head>
-<body>
-    <h1>Product Catalogue</h1>
-    <table>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="/">
+            <!-- <img class="timeless-finds-logo" src="/images/logo.png" alt="logo" width="260" height="125"> -->
+            <img
+              class="timeless-finds-logo"
+              src="/images/logonew.png"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <div class="right">
+          <a class="link" href="./#content-block">About</a>
+          <a class="link" href="./#contact">Contact</a>
+          <a class="link" th:href="@{/productcatalogue}">Products</a>
+
+          <a class="link" th:href="@{/cartpage}">View Cart</a>
+          <!-- search bar -->
+          <div class="searchbar">
+            <form action="/productcatalogue" method="post">
+              <input type="text" placeholder="Search.." name="searchTerm" />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-body">
+      <h1 class="title valign-text-middle">Product Catalogue</h1>
+
+      <article th:each="product : ${products}" class="item-card-default">
+        <div class="rectangle-1">
+          <img
+            th:src="${product.imageUrl}"
+            alt="[Product Image]"
+            class="product-image"
+          />
+        </div>
+        <div class="name v-align-text-middle rubik-bold-taupe-20px">
+          <td th:text="${product.name}"></td>
+        </div>
+        <div class="name v-align-text-middle rubik-bold-taupe-20px">
+          <td th:text="${product.price}"></td>
+        </div>
+      </article>
+
+      <!-- <table>
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th></th>
-                <th></th>
-            </tr>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.id}"></td>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td th:text="${product.imageUrl}"></td>
-            </tr>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.imageUrl}"></td>
+          </tr>
         </tbody>
-    </table>
-
-</body>
+      </table> -->
+    </div>
+  </body>
 </html>

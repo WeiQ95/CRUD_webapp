@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>Edit Product</h2>
-    <form th:action="@{/update/{id}(id=${product.id})}" th:object="${product}" method="post">
+    <form th:action="@{/update/{id}(id=${product.productId})}" th:object="${product}" method="post">
         <label>Name: <input type="text" th:field="*{name}" required/></label><br/>
 		<label>Description: <input type="text" th:field="*{description}" required/></label><br/>
         <label>Price: <input type="number" th:field="*{price}" required/></label><br/>
