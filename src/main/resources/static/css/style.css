@@ -69,10 +69,10 @@ a:hover {
   min-width: 200px;
 } */
 
-/* #timeless-finds-logo{
-  width:"225" ;
-  height:"60"
-} */
+.timeless-finds-logo{
+  width:225px ;
+  height:60px ;
+}
 
 .navbar .right {
   font-size: 2.5vmin;
@@ -204,15 +204,11 @@ a:hover {
 /* .content .desc h1 {
 } */
 
-
 .content .img-about {
   background-image: url("/images/abt.png");
   background-size: cover;
   min-width: 40vw;
-
 }
-
-
 
 .content .img-mission {
   background-image: url("/images/sus.jpg");
@@ -389,20 +385,9 @@ form textarea {
 
 .item-card-default {
   align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   height: 338px;
   margin-left: 16px;
-  margin-top: 11px;
-  position: relative;
-  width: 225px;
-}
-
-.item-card-default-1 {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 338px;
   margin-top: 11px;
   position: relative;
   width: 225px;
@@ -423,4 +408,9 @@ form textarea {
   min-width: 225px;
   position: relative;
   z-index: -1;
+}
+
+.product-image {
+  height: 225px;
+  width: 224px;
 }
