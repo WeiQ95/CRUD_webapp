@@ -27,13 +27,31 @@
           <div class="searchbar">
             <form action="/productcatalogue" method="post">
               <input type="text" placeholder="Search.." name="searchTerm" />
-              <button type="submit">Search</button>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="product-body">
+
+    <section class="product">
+      <h2 class="product-category">Product Catalogue</h2>
+    </section>
+    <div class="product-container">
+        <article th:each="product : ${products}" class="product-card">
+            <div class="product-image">
+              <img
+              th:src="${product.imageUrl}" class="product-thumb" alt="">
+                <button class="card-btn">add to cart</button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-brand"><td th:text="${product.name}"></td></h2>
+                <!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
+                <span class="price">$<td th:text="${product.price}"></td></span>
+            </div>
+        </article>
+    </div>
+
+    <!-- <div class="product-body">
       <h1 class="title valign-text-middle">Product Catalogue</h1>
 
       <article th:each="product : ${products}" class="item-card-default">
@@ -50,7 +68,7 @@
         <div class="name v-align-text-middle rubik-bold-taupe-20px">
           <td th:text="${product.price}"></td>
         </div>
-      </article>
+      </article> -->
 
       <!-- <table>
         <thead>
