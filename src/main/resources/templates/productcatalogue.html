@@ -1,124 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Product Catalogue</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-</head>
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="logo">
-        <a href="/">
-          <!-- <img class="timeless-finds-logo" src="/images/logo.png" alt="logo" width="260" height="125"> -->
-          <img class="timeless-finds-logo" src="/images/logonew.png" alt="logo" width="225" height="55">
-        </a>
-      </div>
-      <div class="right">
-        <a class="link" href="./#content-block">About</a>
-        <a class="link" href="./#contact">Contact</a>
-        <a class="link" th:href="@{/productcatalogue}">Products</a>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="/">
+            <!-- <img class="timeless-finds-logo" src="/images/logo.png" alt="logo" width="260" height="125"> -->
+            <img
+              class="timeless-finds-logo"
+              src="/images/logonew.png"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <div class="right">
+          <a class="link" href="./#content-block">About</a>
+          <a class="link" href="./#contact">Contact</a>
+          <a class="link" th:href="@{/productcatalogue}">Products</a>
 
-        <a class="link" th:href="@{/cartpage}">View Cart</a>
-        <!-- search bar -->
-        <div class="searchbar">
-          <form action="/productcatalogue" method="post">
-            <input type="text" placeholder="Search.." name="searchTerm">
-            <button type="submit">Search</button>
-          </form>
+          <a class="link" th:href="@{/cartpage}">View Cart</a>
+          <!-- search bar -->
+          <div class="searchbar">
+            <form action="/productcatalogue" method="post">
+              <input type="text" placeholder="Search.." name="searchTerm" />
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="product-body">
 
+    <section class="product">
+      <h2 class="product-category">Product Catalogue</h2>
+    </section>
+    <div class="product-container">
+        <article th:each="product : ${products}" class="product-card">
+            <div class="product-image">
+              <img
+              th:src="${product.imageUrl}" class="product-thumb" alt="">
+                <button class="card-btn">add to cart</button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-brand"><td th:text="${product.name}"></td></h2>
+                <!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
+                <span class="price">$<td th:text="${product.price}"></td></span>
+            </div>
+        </article>
+    </div>
 
-    <h1 class = "title valign-text-middle">Product Catalogue</h1>
-      <div class="frame-12">
-        <article class="item-card-default">
-          <div class="rectangle-1">
-            <img src="/images/Products/Cubical-wine-rack-cabinet.jpg" alt="[Cabinet] Cubical wine rack cabinet" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Cabinet] Cubical wine rack cabinet</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$500</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/Teak-Motif-Java-Cabinet.png" alt="[Cabinet] Teak Motif Java Cabinet" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Cabinet] Teak Motif Java Cabinet</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$399</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/Nanyang-vintage-chair.png" alt="[Chair] Nanyang vintage chair" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Chair] Nanyang vintage chair</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$55</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/Stand-Mirror.png" alt="[Mirror] Stand Mirror" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Mirror] Stand Mirror</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$300</div>
-        </article>
-      </div>
-      <div class="frame-13">
-        <article class="item-card-default">
-          <div class="rectangle-1">
-            <img src="/images/Products/Coffee-Table-sofa-set.png" alt="[Table] Coffee Table sofa set" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Table] Coffee Table sofa set</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$700</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/White-Wardrobe.png" alt="[Wardrobe] White Wardrobe" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Wardrobe] White Wardrobe</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$250</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/Antique-Brass-Gothic-Standing-Lantern.png" alt="[Wares] Antique Brass Gothic Standing Lantern" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Wares] Antique Brass Gothic Standing Lantern</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$70</div>
-        </article>
-        <article class="item-card-default-1">
-          <div class="rectangle-1">
-            <img src="/images/Products/Antique-Brass-Hanging-Lantern.png" alt="[Wares] Antique Brass Hanging Lantern" height="225px" width="225px">
-          </div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">[Wares] Antique Brass Hanging Lantern</div>
-          <div class="name v-align-text-middle rubik-bold-taupe-20px">$88</div>
-        </article>
-      </div>
-    
-    
-    
-    
-    <table>
+    <!-- <div class="product-body">
+      <h1 class="title valign-text-middle">Product Catalogue</h1>
+
+      <article th:each="product : ${products}" class="item-card-default">
+        <div class="rectangle-1">
+          <img
+            th:src="${product.imageUrl}"
+            alt="[Product Image]"
+            class="product-image"
+          />
+        </div>
+        <div class="name v-align-text-middle rubik-bold-taupe-20px">
+          <td th:text="${product.name}"></td>
+        </div>
+        <div class="name v-align-text-middle rubik-bold-taupe-20px">
+          <td th:text="${product.price}"></td>
+        </div>
+      </article> -->
+
+      <!-- <table>
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th></th>
-                <th></th>
-            </tr>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td th:text="${product.imageUrl}"></td>
-                <td >
-                	<form method="POST" th:action="@{/productcatalogue/addtocart}">
-                		<button type="submit" name="productId" th:value="${product.productId}">Add Product</button>
-                	</form>
-                </td>
-            </tr>
-        </tbody> 
-    </table>
-  </div>
-</body>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.imageUrl}"></td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+  </body>
 </html>

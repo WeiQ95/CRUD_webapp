@@ -1,93 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Timeless Finds - Furniture Ecommerce Site</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-</head>
+  <head>
+    <title>Timeless Finds - Furniture Ecommerce Site</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  </head>
 
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="logo">
-        <a href="/">
-          <img id="timeless-finds-logo" src="/images/logonew.png" alt="logo" width="225" height="55">
-        </a>
-      </div>
-      <div class="right">
-        <a class="link" href="#content-block">About</a>
-        <a class="link" href="#contact">Contact</a>
-        <a class="link" th:href="@{/productcatalogue}">Products</a>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="/">
+            <img
+              class="timeless-finds-logo"
+              src="/images/logonew.png"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <div class="right">
+          <a class="link" href="#content-block">About</a>
+          <a class="link" href="#contact">Contact</a>
+          <a class="link" th:href="@{/productcatalogue}">Products</a>
 
-        <a class="link" th:href="@{/cartpage}">View Cart</a>
-        <!-- search bar -->
-        <div class="searchbar">
-          <form action="/productcatalogue/search" method="post">
-            <input type="text" placeholder="Search.." name="searchTerm">
-            <button type="submit">Search</button>
-          </form>
+          <a class="link" th:href="@{/cartpage}">View Cart</a>
+          <!-- search bar -->
+          <div class="searchbar">
+            <form action="/productcatalogue" method="post">
+              <input type="text" placeholder="Search.." name="searchTerm" />
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="splash">
-    <div class="desc">
-      <h1>Each piece has a history, make it part of yours.</h1>
+    <div class="splash">
+      <div class="desc">
+        <h1>Each piece has a history, make it part of yours.</h1>
 
-      <p>
-        Where vintage meets modern.
-      </p>
-      <br />
-      <button type="button" class="splash-btn" onclick="document.location='/productcatalogue'">Shop Now!</button>
-    </div>
-    <div class="img"></div>
-  </div>
-
-  <div class="features">
-    <div class="card">
-      <div class="top">
-        <img src="https://picsum.photos/75" />
-        <h2>Vintage</h2>
+        <p>Where vintage meets modern.</p>
+        <br />
+        <button
+          type="button"
+          class="splash-btn"
+          onclick="document.location='/productcatalogue'"
+        >
+          Shop Now!
+        </button>
       </div>
-      <div class="bottom">
-        <p>
-          The vintage element of second-hand furniture comes from its unique
-          design features, materials, and craftsmanship. These elements
-          often reflect the trends, tastes, and aesthetics of the era in
-          which they were produced.
-        </p>
-      </div>
+      <div class="img"></div>
     </div>
 
-    <div class="card">
-      <div class="top">
-        <img src="https://picsum.photos/75" />
-        <h2>Unique</h2>
+    <div class="features">
+      <div class="card">
+        <div class="top">
+          <img src="https://picsum.photos/75" />
+          <h2>Vintage</h2>
+        </div>
+        <div class="bottom">
+          <p>
+            The vintage element of second-hand furniture comes from its unique
+            design features, materials, and craftsmanship. These elements often
+            reflect the trends, tastes, and aesthetics of the era in which they
+            were produced.
+          </p>
+        </div>
       </div>
-      <div class="bottom">
-        <p>
-          Second-hand furniture can have a unique element that sets it apart
-          from new furniture pieces. Since second-hand furniture is often
-          one-of-a-kind, it can be difficult to find the same piece
-          elsewhere.
-        </p>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="top">
-        <img src="https://picsum.photos/75" />
-        <h2>Refurbished</h2>
+      <div class="card">
+        <div class="top">
+          <img src="https://picsum.photos/75" />
+          <h2>Unique</h2>
+        </div>
+        <div class="bottom">
+          <p>
+            Second-hand furniture can have a unique element that sets it apart
+            from new furniture pieces. Since second-hand furniture is often
+            one-of-a-kind, it can be difficult to find the same piece elsewhere.
+          </p>
+        </div>
       </div>
-      <div class="bottom">
-        <p>
-          With a little creativity and some elbow grease, a worn-out piece
-          of furniture can become a stunning statement piece that adds
-          character and style to a space.
-        </p>
+
+      <div class="card">
+        <div class="top">
+          <img src="https://picsum.photos/75" />
+          <h2>Refurbished</h2>
+        </div>
+        <div class="bottom">
+          <p>
+            With a little creativity and some elbow grease, a worn-out piece of
+            furniture can become a stunning statement piece that adds character
+            and style to a space.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
     <div id="content-block">
       <div class="content">
@@ -100,9 +106,9 @@
               incorporated seamlessly into modern-day interiors.
               <br /><br />
               In 2010, Sarah opened Timeless Finds, a boutique furniture store
-              that specializes in high-quality antique furniture and vintage wares
-              from all over the world. Each piece has been carefully selected for
-              its beauty, craftsmanship, and story.
+              that specializes in high-quality antique furniture and vintage
+              wares from all over the world. Each piece has been carefully
+              selected for its beauty, craftsmanship, and story.
               <br /><br />
               Timeless Finds has become a go-to destination for designers and
               collectors alike. Our passion for unique, well-crafted pieces has
@@ -150,10 +156,8 @@
         <div class="img-map"></div>
       </div>
     </div>
-  
 
-  <div class="footer"></div>
-  <!-- container end -->
-</body>
-
+    <div class="footer"></div>
+    <!-- container end -->
+  </body>
 </html>
