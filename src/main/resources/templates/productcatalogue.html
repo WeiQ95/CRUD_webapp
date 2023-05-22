@@ -19,6 +19,11 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.imageUrl}"></td>
+                <td >
+                	<form method="POST" th:action="@{/productcatalogue/addtocart}">
+                		<button type="submit" name="productId" th:value="${product.productId}">Add Product</button>
+                	</form>
+                </td>
             </tr>
         </tbody>
     </table>

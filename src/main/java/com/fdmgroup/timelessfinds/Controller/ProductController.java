@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fdmgroup.timelessfinds.Model.Cart;
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Model.User;
+import com.fdmgroup.timelessfinds.Repository.ProductRepository;
+import com.fdmgroup.timelessfinds.Service.CartService;
 import com.fdmgroup.timelessfinds.Service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,10 +25,13 @@ import jakarta.servlet.http.HttpSession;
 public class ProductController {
 
     private ProductService productService;
+    
+    private CartService cartService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CartService cartService) {
 		this.productService = productService;
+		this.cartService = cartService;
 	}
 
     @GetMapping("/productslist")
@@ -89,7 +97,7 @@ public class ProductController {
         return "redirect:/productslist";
     }
     
-    @PostMapping("/productcatalogue")
+    @PostMapping("/productcatalogue/search")
 	public String goToProductCatalogue(Model model, String searchTerm) {
     	List<Product> products = productService.findProductsByMatchingName(searchTerm);
     	model.addAttribute("products", products);
@@ -101,6 +109,17 @@ public class ProductController {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "productcatalogue";
+    }
+    
+    @PostMapping("/productcatalogue/addtocart")
+    public String addProductToCart(HttpSession session, @RequestParam Long productId) {
+    	User user = (User) session.getAttribute("loggedInUser");
+    	if (user == null) {
+    		return "redirect:/login";
+    	}
+    	long cartId = user.getCart().getCartId();
+    	cartService.addProductToCart(cartId, productId);
+    	return "redirect:/productcatalogue";
     }
 
     

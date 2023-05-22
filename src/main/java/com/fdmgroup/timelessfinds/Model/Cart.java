@@ -13,7 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.transaction.Transactional;
 
 @Entity
 public class Cart {
@@ -35,7 +37,7 @@ public class Cart {
 	@JoinColumn(name="fk_cart_id"), 	inverseJoinColumns=
 	@JoinColumn(name="fk_product_id")
 	) 
-	private List<Product> cart = new ArrayList<>();
+	private List<Product> products = new ArrayList<>();
 
 	public Long getCartId() {
 		return cartId;
@@ -45,12 +47,12 @@ public class Cart {
 		this.cartId = cartId;
 	}
 
-	public List<Product> getCart() {
-		return cart;
+	public List<Product> getProducts() {
+		return products;
 	}
 
-	public void setCart(List<Product> cart) {
-		this.cart = cart;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	public User getUser() {
@@ -62,24 +64,24 @@ public class Cart {
 	}
 
 	public void addProduct(Product product) {
-		cart.add(product);
+		products.add(product);
 	}
 	
 	public void removeProduct(Product product) {
-		cart.remove(product);
+		products.remove(product);
 	}
 	
 	public void updateProductinCart(Product product) {
-		for (int i=0; i < cart.size(); i++) {
-			if(cart.get(i).getProductId() == product.getProductId()) {
-				cart.set(i, product);
+		for (int i=0; i < products.size(); i++) {
+			if(products.get(i).getProductId() == product.getProductId()) {
+				products.set(i, product);
 			}
 		}
 	}
 	
 	public String getListOfProduct() {
 		String listOfItems = "";
-		for (Product pdt: cart) {
+		for (Product pdt: products) {
 			listOfItems += pdt.getProductId() +": "+pdt.getName() +", "+ pdt.getPrice()+", "+ pdt.getQuantity() + "\n";
 		}
 		return listOfItems;
