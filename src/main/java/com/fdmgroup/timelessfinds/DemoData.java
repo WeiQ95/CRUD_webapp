@@ -60,11 +60,11 @@ public class DemoData implements ApplicationRunner{
 		cartRepository.save(c1);
 		cartRepository.save(c2);
 
-		userRepository.save(u1);
-		userRepository.save(u2);
+//		userRepository.save(u1);
+//		userRepository.save(u2);
 						
-		orderRepository.save(o1);
-		orderRepository.save(o2);
+//		orderRepository.save(o1);
+//		orderRepository.save(o2);
 	}
 
 }

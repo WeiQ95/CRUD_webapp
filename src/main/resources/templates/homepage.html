@@ -1,115 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Timeless Finds - Furniture Ecommerce Site</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="logo">
-          <a href="/">
-            <img src="/images/logo.png" alt="logo" width="370" height="200">
-            </a>
-        </div>
-        <div class="right">
-          <a class="link" href="#about">About</a>
-          <a class="link" href="#contact">Contact</a>
-          <a class="link" th:href="@{/productcatalogue}">Products</a>
-          
-          <a class="link" th:href="@{/cartpage}">View Cart</a>
-          
-          <a class="link" href="#">View Previous Orders</a>
-          <!-- search bar -->
-          <div>
-          	<form action="/productcatalogue/search" method="post">
-          	  <input type="text" placeholder="Search.." name="searchTerm">
-              <button type="submit">Search</button> 
-          	</form>
-          </div>
+<head>
+  <title>Timeless Finds - Furniture Ecommerce Site</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="/">
+          <img id="timeless-finds-logo" src="/images/logonew.png" alt="logo" width="225" height="55">
+        </a>
+      </div>
+      <div class="right">
+        <a class="link" href="#content-block">About</a>
+        <a class="link" href="#contact">Contact</a>
+        <a class="link" th:href="@{/productcatalogue}">Products</a>
+
+        <a class="link" th:href="@{/cartpage}">View Cart</a>
+        <!-- search bar -->
+        <div class="searchbar">
+          <form action="/productcatalogue/search" method="post">
+            <input type="text" placeholder="Search.." name="searchTerm">
+            <button type="submit">Search</button>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="splash">
-        <div class="desc">
-          <h1>Each piece has a history, make it part of yours.</h1>
-					
-          <p>
-            Where vintage meets modern.
-          </p>		
-					<br /> 
-					<button type="button" class="splash-btn">Shop Now!</button>
-        </div>
-        <div class="img"></div>
+  <div class="splash">
+    <div class="desc">
+      <h1>Each piece has a history, make it part of yours.</h1>
+
+      <p>
+        Where vintage meets modern.
+      </p>
+      <br />
+      <button type="button" class="splash-btn" onclick="document.location='/productcatalogue'">Shop Now!</button>
+    </div>
+    <div class="img"></div>
+  </div>
+
+  <div class="features">
+    <div class="card">
+      <div class="top">
+        <img src="https://picsum.photos/75" />
+        <h2>Vintage</h2>
       </div>
-
-      <div class="features">
-        <div class="card">
-          <div class="top">
-            <img src="https://picsum.photos/75" />
-            <h2>Vintage</h2>
-          </div>
-          <div class="bottom">
-            <p>
-              The vintage element of second-hand furniture comes from its unique
-              design features, materials, and craftsmanship. These elements
-              often reflect the trends, tastes, and aesthetics of the era in
-              which they were produced.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <img src="https://picsum.photos/75" />
-            <h2>Unique</h2>
-          </div>
-          <div class="bottom">
-            <p>
-              Second-hand furniture can have a unique element that sets it apart
-              from new furniture pieces. Since second-hand furniture is often
-              one-of-a-kind, it can be difficult to find the same piece
-              elsewhere.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <img src="https://picsum.photos/75" />
-            <h2>Refurbished</h2>
-          </div>
-          <div class="bottom">
-            <p>
-              With a little creativity and some elbow grease, a worn-out piece
-              of furniture can become a stunning statement piece that adds
-              character and style to a space.
-            </p>
-          </div>
-        </div>
+      <div class="bottom">
+        <p>
+          The vintage element of second-hand furniture comes from its unique
+          design features, materials, and craftsmanship. These elements
+          often reflect the trends, tastes, and aesthetics of the era in
+          which they were produced.
+        </p>
       </div>
+    </div>
 
+    <div class="card">
+      <div class="top">
+        <img src="https://picsum.photos/75" />
+        <h2>Unique</h2>
+      </div>
+      <div class="bottom">
+        <p>
+          Second-hand furniture can have a unique element that sets it apart
+          from new furniture pieces. Since second-hand furniture is often
+          one-of-a-kind, it can be difficult to find the same piece
+          elsewhere.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="top">
+        <img src="https://picsum.photos/75" />
+        <h2>Refurbished</h2>
+      </div>
+      <div class="bottom">
+        <p>
+          With a little creativity and some elbow grease, a worn-out piece
+          of furniture can become a stunning statement piece that adds
+          character and style to a space.
+        </p>
+      </div>
+    </div>
+  </div>
+
+    <div id="content-block">
       <div class="content">
         <div class="desc">
           <div id="about">
-          <h1>About Us</h1>
-					<br />
-          <p>
-            Timeless Finds offers carefully curated vintage pieces that can be
-            incorporated seamlessly into modern-day interiors.
-            <br /><br />
-            In 2010, Sarah opened Timeless Finds, a boutique furniture store
-            that specializes in high-quality antique furniture and vintage wares
-            from all over the world. Each piece has been carefully selected for
-            its beauty, craftsmanship, and story.
-            <br /><br />
-            Timeless Finds has become a go-to destination for designers and
-            collectors alike. Our passion for unique, well-crafted pieces has
-            inspired her team to curate an ever-changing collection of
-            beautiful, one-of-a-kind furniture.
-          </p>
+            <h1>About Us</h1>
+            <br />
+            <p>
+              Timeless Finds offers carefully curated vintage pieces that can be
+              incorporated seamlessly into modern-day interiors.
+              <br /><br />
+              In 2010, Sarah opened Timeless Finds, a boutique furniture store
+              that specializes in high-quality antique furniture and vintage wares
+              from all over the world. Each piece has been carefully selected for
+              its beauty, craftsmanship, and story.
+              <br /><br />
+              Timeless Finds has become a go-to destination for designers and
+              collectors alike. Our passion for unique, well-crafted pieces has
+              inspired her team to curate an ever-changing collection of
+              beautiful, one-of-a-kind furniture.
+            </p>
+          </div>
         </div>
-      </div>
         <div class="img-about"></div>
       </div>
 
@@ -117,7 +118,7 @@
         <div class="img-mission"></div>
         <div class="desc">
           <h1>Mission & Values</h1>
-					<br />
+          <br />
           <p>
             Timeless Finds’ mission is to preserve the history and beauty of
             vintage and antique furniture and to give it new life in modern
@@ -130,26 +131,29 @@
         </div>
       </div>
 
-			<div class="content">
+      <div class="content">
         <div class="desc">
           <div id="contact">
-          <h1>Contact Us</h1>
-					<br />
-          <p>
-            Address: 1803 Geylang Bahru, Kallang Distripark #01-02, 339710
-						<br />
-						Phone: +65 6728 3728
-						<br />
-						Instagram: @TimelessFinds
-						<br />
-						Facebook: Timeless Finds - Second-hand Vintage Furniture
-          </p>
+            <h1>Contact Us</h1>
+            <br />
+            <p>
+              Address: 1803 Geylang Bahru, Kallang Distripark #01-02, 339710
+              <br />
+              Phone: +65 6728 3728
+              <br />
+              Instagram: @TimelessFinds
+              <br />
+              Facebook: Timeless Finds - Second-hand Vintage Furniture
+            </p>
+          </div>
         </div>
-      </div>
         <div class="img-map"></div>
       </div>
+    </div>
+  
 
-			<div class="footer"></div>
-    <!-- container end -->
-  </body>
+  <div class="footer"></div>
+  <!-- container end -->
+</body>
+
 </html>
