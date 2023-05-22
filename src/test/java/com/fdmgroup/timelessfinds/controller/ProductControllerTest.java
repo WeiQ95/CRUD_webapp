@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import com.fdmgroup.timelessfinds.Controller.ProductController;
 import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Repository.ProductRepository;
+import com.fdmgroup.timelessfinds.Service.CartService;
 import com.fdmgroup.timelessfinds.Service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,12 +28,14 @@ public class ProductControllerTest {
 
 	@Mock ProductService productService;
 	
+	@Mock CartService cartService;
+	
 	ProductController productController;
 
 	@Test
 	@DisplayName("verify that search term is passed to findProductsByMatchingName method and resulting list is added as model attribute")
 	void goToProductCatalogue() {
-		productController = new ProductController(productService);
+		productController = new ProductController(productService, cartService);
 		Product apple = new Product();
 		apple.setName("apple");
 		List<Product> products = new ArrayList<>(List.of(apple));

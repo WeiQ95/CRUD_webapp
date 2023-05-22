@@ -1,6 +1,8 @@
 package com.fdmgroup.timelessfinds;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -58,12 +60,11 @@ public class DemoData implements ApplicationRunner{
 		cartRepository.save(c1);
 		cartRepository.save(c2);
 
-		userRepository.save(u1);
-		userRepository.save(u2);
+//		userRepository.save(u1);
+//		userRepository.save(u2);
 						
-		orderRepository.save(o1);
-		orderRepository.save(o2);
-		
+//		orderRepository.save(o1);
+//		orderRepository.save(o2);
 	}
 
 }

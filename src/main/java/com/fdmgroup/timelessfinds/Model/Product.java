@@ -1,10 +1,15 @@
 package com.fdmgroup.timelessfinds.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,7 +24,8 @@ public class Product {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="description")
+
+	@Column(name="description", columnDefinition = "TEXT")
 	private String description;
 	
 	@Column(name="price")
@@ -33,6 +39,9 @@ public class Product {
 
 	@Column(name="image")
 	private String imageUrl;
+	
+	@ManyToMany(mappedBy = "products")
+	private List<Cart> carts = new ArrayList<>();
 	
 	//Constructors
 	public Product() {
