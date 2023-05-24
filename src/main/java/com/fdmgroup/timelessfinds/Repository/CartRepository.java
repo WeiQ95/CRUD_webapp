@@ -12,9 +12,6 @@ import com.fdmgroup.timelessfinds.Model.Product;
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
     
-    @Query(value = "SELECT * FROM Cart c WHERE c.order_id = ?1", nativeQuery = true) 
-    Cart findCartByOrderId(Long order_id);
-    
-    @Query(value = "SELECT product_id FROM cart_product p where p.cartId = ?1", nativeQuery = true) 
-    List<Product> findProductsInCartByID(Long cartId);
+    @Query(value = "SELECT fk_product_id FROM cart_product p where p.fk_cart_id = ?1", nativeQuery = true) 
+    List<Product> findProductsInCartById(Long cartId);
 }

@@ -35,7 +35,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="cart_id")
-	private Cart cart;
+	private Cart cart = new Cart();
 	
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders= new ArrayList<>();
@@ -99,6 +99,10 @@ public class User {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public Cart getCart() {
+		return cart;
 	}
 
 	public void setCart(Cart cart) {
