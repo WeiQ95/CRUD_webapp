@@ -10,6 +10,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Image</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th></th>
@@ -20,6 +21,7 @@
             <tr th:each="product : ${products}">
                 <td th:text="${product.productId}"></td>
                 <td th:text="${product.name}"></td>
+                <td><img th:src="${product.imageUrl}" class="product-thumb" alt="" height = "50px" width = "50px"></td>               
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.category}"></td>
