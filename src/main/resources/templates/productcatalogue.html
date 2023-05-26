@@ -49,9 +49,7 @@
 						<td th:text="${product.name}"></td>
 					</h2>
 					<!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
-					<span class="price">$
-						<td th:text="${product.price}"></td>
-					</span>
+					 <span class="price">$<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td></span>
 				</div>
 			</form>
 		</article>

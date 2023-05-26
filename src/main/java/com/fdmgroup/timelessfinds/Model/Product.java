@@ -28,7 +28,7 @@ public class Product {
 	@Column(name="description", columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(name="price")
+	@Column(name="price", columnDefinition = "decimal(10,2)", scale = 2)
 	private double price;
 	
 	@Column(name="category")

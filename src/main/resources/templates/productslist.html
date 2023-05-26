@@ -23,7 +23,7 @@
                 <td th:text="${product.name}"></td>
                 <td><img th:src="${product.imageUrl}" class="product-thumb" alt="" height = "50px" width = "50px"></td>               
                 <td th:text="${product.description}"></td>
-                <td th:text="${product.price}"></td>
+                <td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td>
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.quantity}"></td>
                 <td><a th:href="@{/edit/{id}(id=${product.productId})}">Edit</a></td>
