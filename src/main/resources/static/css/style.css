@@ -298,12 +298,12 @@ thead {
 .product-image {
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 270px;
 }
 
 .product-thumb {
   width: 100%;
-  height: 350px;
+  height: 270px;
   object-fit: cover;
 }
 
