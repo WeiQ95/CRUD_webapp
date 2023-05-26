@@ -1,16 +1,17 @@
 /*
 USERS TABLE
 */
+SET foreign_key_checks = 0;
 INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 1,'abcdef@gmail.com',1,'jon','jon',15 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE user_id = 1 AND username = 'jon'); 
 INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',16 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE user_id = 2 AND username = 'yangyu'); 
 
 /*
 PRODUCTS TABLE
 */
-SET foreign_key_checks = 0;
+
 TRUNCATE TABLE `timeless_finds`.`products`;
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (9,'Cabinet','* Cubical wine rack sideboard from MOVO, a popular Swiss brand in the 90s.\n* Condition: 8/10\n* Minor scratches and chipped corners on the bottom left of cabinet. \n* Originally from a local resident.\n* 78 (H) x 94 (W) x 35 (D)\n\nDelivery method:\nOnly to ground level or lift-landing floor which this item can fit into your service lift.','https://drive.google.com/uc?id=1bFZ0mhTFQ2UrFin8adPibPGjyPmg8kMT','Cubical Wine Rack Cabinet',780.12,2);
-INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (10,'Mirror','* Mango Wood mirror from Java, Indonesia.\n* Mirror surface free of scratches, wooden frame retouched with rose gold paint matching original.\n* Originally from Tapas Hotel\n* 162 (H) x 84 (W) x 3 (D)','https://drive.google.com/uc?id=1s-S2GyKcjLk9QU14hjL-9K7_YnrjXl6P','Java Antique Rose Gold',320.00,3);
+INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (10,'Mirror','* Mango Wood mirror from Java, Indonesia.\n* Mirror surface free of scratches, wooden frame retouched with rose gold paint matching original.\n* Originally from Tapas Hotel\n* 162 (H) x 84 (W) x 3 (D)','https://drive.google.com/uc?id=1s-S2GyKcjLk9QU14hjL-9K7_YnrjXl6P','Java Antique Rose Gold',320.01,3);
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (11,'Table','* Teak wood side table from Java, Indonesia.\n* Handcrafted by Javanese craftsmen, firmly held together with traditional butt joints to retain the old school charm of the furniture. On top of that, the butt joints are further reinforced with epoxy resin and nailed in for extra security.\n* Varnish touchups done in-house, some tables have minor chipped corners on inconspicuous parts of the table. \n* Originally from closed Begia Hotel in Indonesia\n* 72 (H) x 41 (W) x 34 (D)','https://drive.google.com/uc?id=1HHSuJzbETuIb_THsg6epFfD32IjtfOa-','Oval Table (3-Drawer)',130.00,6);
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (12,'Table','* Grade A Oak sewing table made locally in Singapore in the 80s.\n* Condition: 7/10\n* Minor scratches and weathering, retouched in-house\n* Originally from local residence\n* 78 (H) x 86 (W) x 45 (D)','https://drive.google.com/uc?id=1dlYVN3dWT3JItTkWRqnKq__bS9AxE3y3','Vintage Sewing Machine Table',250.00,1);
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (13,'Chair','* Original Pine wood chair set of 4 made by Nishigishi Furniture in Kyoto\n* Condition 9/10\nMinor scratches and weather, retouched in-house\n* Originally from local Japanese residence\n* 78 (H) x 60 (W) x 48 (D); 43 (Seat Height and Depth)','https://drive.google.com/uc?id=1wRnWlnzq0kFsQUGCmI-sZIK35z-vjkYu','Nishigishi Chair',522.00,4);
