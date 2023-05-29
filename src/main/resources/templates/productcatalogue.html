@@ -25,7 +25,7 @@
           <a class="link" th:href="@{/cartpage}">View Cart</a>
           <!-- search bar -->
           <div class="searchbar">
-            <form action="/productcatalogue" method="post">
+            <form action="/productcatalogue/search" method="post">
               <input type="text" placeholder="Search.." name="searchTerm" />
             </form>
           </div>
@@ -38,17 +38,21 @@
     </section>
     <div class="product-container">
         <article th:each="product : ${products}" class="product-card">
-            <div class="product-image">
-              <img
-              th:src="${product.imageUrl}" class="product-thumb" alt="">
-                <button class="card-btn">add to cart</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand"><td th:text="${product.name}"></td></h2>
-                <!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
-                <span class="price">$<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td></span>
-            </div>
-        </article>
+			<form action="/productcatalogue/addtocart" method="post">
+				<div class="product-image">
+					<img th:src="${product.imageUrl}" class="product-thumb" alt="">
+					<button class="card-btn" type="submit" name="productId"
+						th:value="${product.productId}">add to cart</button>
+				</div>
+				<div class="product-info">
+					<h2 class="product-brand">
+						<td th:text="${product.name}"></td>
+					</h2>
+					<!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
+					 <span class="price">$<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td></span>
+				</div>
+			</form>
+		</article>
     </div>
 
     <!-- <div class="product-body">
