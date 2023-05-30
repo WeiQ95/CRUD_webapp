@@ -6,6 +6,12 @@ INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id
 INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',16 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE user_id = 2 AND username = 'yangyu'); 
 
 /*
+CART TABLE
+ */
+INSERT INTO `cart` (`cart_id`, cart_date) VALUES (15, '2022-12-30 00:38:54');
+INSERT INTO `cart` (`cart_id`, cart_date) VALUES (16, '2022-12-30 00:38:54');
+
+/*
 PRODUCTS TABLE
 */
 
