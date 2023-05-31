@@ -2,6 +2,8 @@ package com.fdmgroup.timelessfinds.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +35,7 @@ public class User {
 	@Column(name="is_admin")
 	private boolean isAdmin;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="cart_id")
 	private Cart cart = new Cart();
 	
