@@ -8,7 +8,7 @@
     <form th:action="@{/update/{id}(id=${product.productId})}" th:object="${product}" method="post">
         <label>Name: <input type="text" th:field="*{name}" required/></label><br/>
 		<label>Description: <input type="text" th:field="*{description}" required/></label><br/>
-        <label>Price: <input type="number" th:field="*{price}" required/></label><br/>
+        <label>Price: <input type="number" th:field="*{price}" min="0" value="0" step=".01" required/></label><br/>
         <label>Category: <input type="text" th:field="*{category}" required/></label><br/>
         <label>Quantity: <input type="number" th:field="*{quantity}" required/></label><br/>
         <label>Image URL: <input type="text" th:field="*{imageUrl}" required/></label><br/></label>
