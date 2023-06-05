@@ -58,7 +58,7 @@ public class UserController {
 		
 		if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
 			session.setAttribute("loggedInUser", existingUser);
-			return "redirect:/create";
+			return "redirect:/productslist";
 		} else { 
 			return "loginform";
 		}

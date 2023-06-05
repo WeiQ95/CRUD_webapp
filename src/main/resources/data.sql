@@ -2,8 +2,9 @@
 USERS TABLE
 */
 SET foreign_key_checks = 0;
-INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 1,'abcdef@gmail.com',1,'jon','jon',15 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE user_id = 1 AND username = 'jon'); 
-INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',16 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE user_id = 2 AND username = 'yangyu'); 
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 1,'abcdef@gmail.com',1,'jon','jon',15 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'jon'); 
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',16 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'yangyu'); 
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 3,'wq@gmail.com',1,'123','wq',17 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'wq'); 
 
 /*
 CART TABLE

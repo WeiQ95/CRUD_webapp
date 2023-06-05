@@ -4,6 +4,8 @@
     <title>Create Product</title>
   </head>
   <body>
+    <h1>Welcome, <label th:text = "${username}"> </label></h1>
+    <br>
     <h2>Create Product</h2>
     <form th:action="@{/create}" th:object="${newProduct}" method="post">
       <label>Name: <input type="text" th:field="*{name}" required /></label
