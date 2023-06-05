@@ -93,6 +93,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") Long id, Model model, HttpSession session) throws AccessDeniedException {
     	User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("loggedInUser", loggedInUser);
+        productService.deleteFromCartProduct(id);
     	productService.deleteProduct(id, loggedInUser);
         return "redirect:/productslist";
     }
