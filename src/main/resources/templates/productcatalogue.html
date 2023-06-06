@@ -42,20 +42,27 @@
     </section>
     <div class="product-container">
         <article th:each="product : ${products}" class="product-card">
-			<form action="/productcatalogue/addtocart" method="post">
-				<div class="product-image">
-					<img th:src="${product.imageUrl}" class="product-thumb" alt="">
+			<div class="product-image">
+				<a th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productId})}"> <img
+					th:src="${product.imageUrl}" class="product-thumb" alt="">
+				</a>
+				<form action="/productcatalogue/addtocart" method="post">
 					<button class="card-btn" type="submit" name="productId"
 						th:value="${product.productId}">add to cart</button>
-				</div>
-				<div class="product-info">
-					<h2 class="product-brand">
+				</form>
+			</div>
+			<div class="product-info">
+				<h2 class="product-brand">
+					<a
+						th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productId})}">
 						<td th:text="${product.name}"></td>
-					</h2>
-					<!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
-					 <span class="price">$<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td></span>
-				</div>
-			</form>
+					</a>
+				</h2>
+				<!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
+				<span class="price">$
+					<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td>
+				</span>
+			</div>
 		</article>
     </div>
 
@@ -94,7 +101,7 @@
             <td th:text="${product.imageUrl}"></td>
           </tr>
         </tbody>
-      </table> -->
-    </div>
+      </table> 
+    </div> -->
   </body>
 </html>

@@ -93,6 +93,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") Long id, Model model, HttpSession session) throws AccessDeniedException {
     	User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("loggedInUser", loggedInUser);
+        productService.deleteFromCartProduct(id);
     	productService.deleteProduct(id, loggedInUser);
         return "redirect:/productslist";
     }
@@ -127,6 +128,13 @@ public class ProductController {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "productcatalogue";
+    }
+    
+    @GetMapping("/productcatalogue/{productName}-{productId}")
+    public String goToProduct(@PathVariable String productId, Model model) {
+    	Product product = productService.getProductById(Long.parseLong(productId));
+    	model.addAttribute("product", product);
+    	return "product";
     }
     
     @PostMapping("/productcatalogue/addtocart")

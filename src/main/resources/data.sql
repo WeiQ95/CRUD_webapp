@@ -2,9 +2,10 @@
 USERS TABLE
 */
 SET foreign_key_checks = 0;
-INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 1,'abcdef@gmail.com',1,'jon','jon',15 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'jon'); 
-INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',16 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'yangyu'); 
-INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 3,'wq@gmail.com',1,'123','wq',17 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'wq'); 
+TRUNCATE TABLE `timeless_finds`.`users`;
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 1,'abcdef@gmail.com',1,'jon','jon',1 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'jon'); 
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 2,'yangyu@gmail.com',0,'yangyu','yangyu',2 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'yangyu'); 
+INSERT INTO `users` (`user_id`,`email`,`is_admin`,`password`,`username`,`cart_id`) SELECT 3,'wq@gmail.com',1,'123','wq',3 FROM dual WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'wq'); 
 
 /*
 CART TABLE
@@ -29,4 +30,14 @@ INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (18,'Wares','* Old Brass Hanging Lantern\n* Condition 8/10, Metal surface with natural patina. Door is fixed with new hinges\n* Originally from local residence\n* 35 (H) x 16 (W) x 16 (L); 0.9kg ','https://drive.google.com/uc?id=1mR6jlwPSLCjJ-WlqApMW81B_21mjYNs3','Antique Brass Hanging Lantern',40.00,6);
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (19,'Table','* This beautifully crafted red wood desk dates back to the mid 20th century Southeast Asia and boasts intricate carvings and brass hardware. The roll-top design provides ample storage for papers and office supplies, while the multiple drawers and compartments keep everything organized.\n* Condition 9/10, new coat of wood-protection varnish','https://drive.google.com/uc?id=1DayFirtHLFPf42wSr_whnGMTtG8LHV-O','Antique Roll-Top Desk',1030.00,1);
 INSERT INTO `timeless_finds`.`products` (`product_id`,`category`,`description`,`image`,`name`,`price`,`quantity`) VALUES (20,'Chair','* This stylish armchair from the mid-20th century features clean lines and a sleek design. Made from rich, warm-toned wood, it has a comfortably upholstered seat and backrest in a neutral, textured fabric.\n* Condition 8/10, upholstery repaired.\n* Originally from local residence','https://drive.google.com/uc?id=18m0YGNGrKf-lWXy5ntcV4XltGxsjyO61','Mid-Century Modern Armchair',300.00,2);
+
+/*
+CART TABLE
+*/
+
+TRUNCATE TABLE `timeless_finds`.`cart`;
+INSERT INTO `timeless_finds`.`cart` (`cart_id`, `cart_date`) VALUES ('1', '2023-06-06 08:43:30.131000');
+INSERT INTO `timeless_finds`.`cart` (`cart_id`, `cart_date`) VALUES ('2', '2023-06-06 08:43:30.131000');
+INSERT INTO `timeless_finds`.`cart` (`cart_id`, `cart_date`) VALUES ('3', '2023-06-06 08:43:30.131000');
+
 SET foreign_key_checks = 1;

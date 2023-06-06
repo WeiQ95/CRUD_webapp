@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Admin Panel - Add Product</title>
-    <link rel="stylesheet" type="text/css" href="@{/css/style.css}" />
-  </head>
-  <body>
-    <!-- <div class="container"> -->
-    <div class="navbar">
-      <div class="logo">
-        <a href="#">Timeless Finds</a>
-      </div>
-      <div class="right">
-        <a class="link" href="#">About</a>
-        <a class="link" href="#">Contact</a>
-        <a class="link" href="#">FAQs</a>
-        <a class="link" href="#">Products</a>
-      </div>
-    </div>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Product Catalogue</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<div class="logo">
+				<a href="/"> <!-- <img class="timeless-finds-logo" src="/images/logo.png" alt="logo" width="260" height="125"> -->
+					<img class="timeless-finds-logo" src="/images/logonew.png"
+					alt="logo" />
+				</a>
+			</div>
+			<div class="right">
+				<a class="link" href="./#content-block">About</a> <a class="link"
+					href="./#contact">Contact</a> <a class="link"
+					th:href="@{/productcatalogue}">Products</a> <a class="link"
+					th:href="@{/cartpage}">View Cart</a>
+				<!-- search bar -->
+				<div class="searchbar">
+					<form action="/productcatalogue/search" method="post">
+						<input type="text" placeholder="Search.." name="searchTerm" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="big-title">
-      <h1>Admin Panel - Add Product</h1>
-    </div>
+    <section class="product">
+      <h2 class="product-category">Product Name</h2>
+    </section>
+	<div class="product-container">
+		<article class="product-card">
+			<div class="product-image">
+				<img th:src="${product.imageUrl}" class="product-thumb" alt="">
+				<form action="/productcatalogue/addtocart" method="post">
+					<button class="card-btn" type="submit" name="productId"
+						th:value="${product.productId}">add to cart</button>
+				</form>
+			</div>
+			<div class="product-info">
+				<h2 class="product-brand">
+					<td th:text="${product.name}"></td>
+				</h2>
+				<!-- <p class="product-short-des"><td th:text="${product.description}"></p> -->
+				<span class="price">$
+					<td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td>
+				</span>
+			</div>
+		</article>
+	</div>
 
-    <div class="display">
-      <form action="/products/add" method="post" enctype="multipart/form-data">
-        <label for="image">Product Image:</label>
-        <input type="file" name="image" id="image" />
-        <br />
-        <label for="name">Product Name:</label>
-        <input type="text" name="name" id="name" required />
-        <br />
-        <label for="price">Price:</label>
-        <input type="number" name="price" id="price" required />
-        <br />
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" required></textarea>
-        <br />
-        <label for="qty">Product Qty:</label>
-        <input type="number" name="qty" id="qty" required />
-        <br />
-        <input type="submit" value="Add Product" />
-      </form>
-    </div>
-  </body>
+</body>
 </html>
