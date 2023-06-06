@@ -2,8 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Product List</title>
+    
 </head>
 <body>
+  <div class="container">
+    <div class="navbar">
+      <div class="right">
+        
+        <a class="link" th:href="@{/productcatalogue}">Products</a>
+        <!-- create -->
+        <a class="link" th:href="@{/create}">Create</a>
+        <!-- logout -->
+        <a class="link" th:href="@{/logout}">Admin Logout</a>
+        <!-- search bar -->
+        <div class="searchbar">
+          <form action="/productslist/search" method="post">
+            <input type="text" placeholder="Search.." name="searchTerm" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<body>
+    <h1>Welcome, <label th:text = "${username}"> </label></h1>
     <h1>Product List</h1>
     <table>
         <thead>
@@ -13,8 +34,8 @@
                 <th>Image</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th></th>
-                <th></th>
+                <th>Category</th>
+                <th>Quantity</th>
             </tr>
         </thead>
         <tbody>

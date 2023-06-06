@@ -38,14 +38,25 @@ public class ProductController {
     public String getAllProducts(Model model, HttpSession session) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
+        if(session.getAttribute("loggedInUser") == null){
+            return "redirect:/login";
+        }
         User loggedInUser = (User) session.getAttribute("loggedInUser");
+        String username = loggedInUser.getUsername();
         model.addAttribute("loggedInUser", loggedInUser);
+        model.addAttribute("username", username);
         return "productslist";
     }
 
     @GetMapping("/create")
-    public String createProduct(Model model) {
+    public String createProduct(Model model , HttpSession session) {
         model.addAttribute("newProduct", new Product());
+        if(session.getAttribute("loggedInUser") == null){
+            return "redirect:/login";
+        }
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        String username = loggedInUser.getUsername();
+        model.addAttribute("username", username);
         return "productform";
     }
 
@@ -102,6 +113,13 @@ public class ProductController {
     	List<Product> products = productService.findProductsByMatchingName(searchTerm);
     	model.addAttribute("products", products);
 		return "productcatalogue";
+	}
+
+    @PostMapping("/productslist/search")
+	public String searchProductListing(Model model, String searchTerm) {
+    	List<Product> products = productService.findProductsByMatchingName(searchTerm);
+    	model.addAttribute("products", products);
+		return "productslist";
 	}
 
     @GetMapping("/productcatalogue")
