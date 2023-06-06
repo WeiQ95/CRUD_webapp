@@ -111,6 +111,13 @@ public class ProductController {
         return "productcatalogue";
     }
     
+    @GetMapping("/productcatalogue/{productName}-{productId}")
+    public String goToProduct(@PathVariable String productId, Model model) {
+    	Product product = productService.getProductById(Long.parseLong(productId));
+    	model.addAttribute("product", product);
+    	return "product";
+    }
+    
     @PostMapping("/productcatalogue/addtocart")
     public String addProductToCart(HttpSession session, @RequestParam Long productId) {
     	User user = (User) session.getAttribute("loggedInUser");
