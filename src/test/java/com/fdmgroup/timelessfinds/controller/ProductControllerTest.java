@@ -15,10 +15,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
-import com.fdmgroup.timelessfinds.Controller.ProductController;
-import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Repository.ProductRepository;
 import com.fdmgroup.timelessfinds.Service.ProductService;
+import com.fdmgroup.timelessfinds.controller.ProductController;
+import com.fdmgroup.timelessfinds.model.Product;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductControllerTest {

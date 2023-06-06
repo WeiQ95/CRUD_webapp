@@ -14,9 +14,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.fdmgroup.timelessfinds.Model.Product;
 import com.fdmgroup.timelessfinds.Repository.ProductRepository;
 import com.fdmgroup.timelessfinds.Service.ProductService;
+import com.fdmgroup.timelessfinds.model.Product;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
