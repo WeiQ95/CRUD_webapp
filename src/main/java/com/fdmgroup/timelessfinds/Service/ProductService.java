@@ -82,4 +82,8 @@ public class ProductService {
 	public List<Product> findProductsByMatchingName(String searchTerm) {
 		return productRepo.findProductsByMatchingName(searchTerm);
 	}
+
+	public void deleteFromCartProduct(Long productId){
+		productRepo.deleteFromCartProduct(productId);
+	}
 }
