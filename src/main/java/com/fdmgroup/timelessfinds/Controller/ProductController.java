@@ -1,158 +1,33 @@
-package com.fdmgroup.timelessfinds.Controller;
-
-import java.nio.file.AccessDeniedException;
-import java.util.List;
+package com.fdmgroup.timelessfinds.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.fdmgroup.timelessfinds.Model.Cart;
-import com.fdmgroup.timelessfinds.Model.Product;
-import com.fdmgroup.timelessfinds.Model.User;
-import com.fdmgroup.timelessfinds.Repository.ProductRepository;
-import com.fdmgroup.timelessfinds.Service.CartService;
-import com.fdmgroup.timelessfinds.Service.ProductService;
-
-import jakarta.servlet.http.HttpSession;
+import com.fdmgroup.timelessfinds.model.jointables.CartProduct;
+import com.fdmgroup.timelessfinds.service.ProductService;
 
 @Controller
+@RequestMapping("/")
 public class ProductController {
 
-    private ProductService productService;
-    
-    private CartService cartService;
-
-    @Autowired
-    public ProductController(ProductService productService, CartService cartService) {
+	private final ProductService productService;
+	
+	@Autowired
+	public ProductController(ProductService productService) {
+		super();
 		this.productService = productService;
-		this.cartService = cartService;
 	}
 
-    @GetMapping("/productslist")
-    public String getAllProducts(Model model, HttpSession session) {
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        if(session.getAttribute("loggedInUser") == null){
-            return "redirect:/login";
-        }
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        String username = loggedInUser.getUsername();
-        model.addAttribute("loggedInUser", loggedInUser);
-        model.addAttribute("username", username);
-        return "productslist";
-    }
-
-    @GetMapping("/create")
-    public String createProduct(Model model , HttpSession session) {
-        model.addAttribute("newProduct", new Product());
-        if(session.getAttribute("loggedInUser") == null){
-            return "redirect:/login";
-        }
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        String username = loggedInUser.getUsername();
-        model.addAttribute("username", username);
-        return "productform";
-    }
-
-    @PostMapping("/create")
-    public String saveProduct(@ModelAttribute("newProduct") Product newProduct, HttpSession session) throws AccessDeniedException{
-    	User currentUser = (User) session.getAttribute("loggedInUser");
-    	if(currentUser == null) {
-    		return "redirect:/login";
-    		}
-    	productService.addProduct(newProduct, currentUser);
-    	return "redirect:/productslist";
-    	}
-
-    @GetMapping("/edit/{id}")
-    public String editProduct(@PathVariable("id") Long id, Model model, HttpSession session) {
-        Product product = productService.getProductById(id);
-        model.addAttribute("product", product);
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        model.addAttribute("loggedInUser", loggedInUser);
-        return "editproduct";
-    }
-
-    @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("product") Product updatedProduct, HttpSession session) throws AccessDeniedException {
-    	User currentUser = (User) session.getAttribute("loggedInUser");
-    	if(currentUser == null) {
-    		return "redirect:/login";
-    		}
-    	productService.updateProduct(id, updatedProduct, currentUser);
-        return "redirect:/productslist";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id, Model model, HttpSession session) throws AccessDeniedException {
-    	User loggedInUser = (User) session.getAttribute("loggedInUser");
-        model.addAttribute("loggedInUser", loggedInUser);
-        productService.deleteFromCartProduct(id);
-    	productService.deleteProduct(id, loggedInUser);
-        return "redirect:/productslist";
-    }
-    
-    @PostMapping("/delete/{id}")
-    public String removeProduct(@PathVariable("id") Long id, Model model, HttpSession session) {
-    	User currentUser = (User) session.getAttribute("loggedInUser");
-    	if(currentUser == null) {
-    		return "redirect:/login";
-    		}
-        Product product = productService.getProductById(id);
-        model.addAttribute("product", product);
-        return "redirect:/productslist";
-    }
-    
-    @PostMapping("/productcatalogue/search")
-	public String goToProductCatalogue(Model model, String searchTerm) {
-    	List<Product> products = productService.findProductsByMatchingName(searchTerm);
-    	model.addAttribute("products", products);
-		return "productcatalogue";
+	@GetMapping("/catalog")
+	@ResponseStatus(HttpStatus.OK)
+	public String getCatalog(Model model) {
+		model.addAttribute("products", productService.findAllProducts());
+//		model.addAttribute("cartItem", new CartProduct());
+		return "catalog";
 	}
-
-    @PostMapping("/productslist/search")
-	public String searchProductListing(Model model, String searchTerm) {
-    	List<Product> products = productService.findProductsByMatchingName(searchTerm);
-    	model.addAttribute("products", products);
-		return "productslist";
-	}
-
-    @GetMapping("/productcatalogue")
-    public String getAllProductCatalogue(Model model, HttpSession session) {
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        return "productcatalogue";
-    }
-    
-    @GetMapping("/productcatalogue/{productName}-{productId}")
-    public String goToProduct(@PathVariable String productId, Model model) {
-    	Product product = productService.getProductById(Long.parseLong(productId));
-    	model.addAttribute("product", product);
-    	return "product";
-    }
-    
-    @PostMapping("/productcatalogue/addtocart")
-    public String addProductToCart(HttpSession session, @RequestParam Long productId) {
-    	User user = (User) session.getAttribute("loggedInUser");
-    	if (user == null) {
-    		return "redirect:/login";
-    	}
-    	long cartId = user.getCart().getCartId();
-    	cartService.addProductToCart(cartId, productId);
-    	return "redirect:/productcatalogue";
-    }
-
-    @GetMapping("/productcatalogue2")
-    public String getAllProductCatalogue2(Model model, HttpSession session) {
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        return "productcatalogue2";
-    }
-    
 }

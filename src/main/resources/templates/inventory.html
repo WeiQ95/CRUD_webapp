@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Catalog</title>
+</head>
+
+<body>
+	    <h1>Product List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productID}"></td>
+                <td th:text="${product.name}"></td>
+                <td><img th:src="${product.imageUrl}" class="product-thumb" alt="" height = "50px" width = "50px"></td>               
+                <td th:text="${product.description}"></td>
+                <td th:text="${#numbers.formatDecimal(product.price,0,2)}"></td>
+                <td th:text="${product.category}"></td>
+                <td th:text="${product.inventoryQuantity}"></td>
+                <td><a th:href="@{/edit/{id}(id=${product.productID})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${product.productID})}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

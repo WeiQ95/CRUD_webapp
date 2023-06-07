@@ -43,18 +43,18 @@
     <div class="product-container">
         <article th:each="product : ${products}" class="product-card">
 			<div class="product-image">
-				<a th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productId})}"> <img
+				<a th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productID})}"> <img
 					th:src="${product.imageUrl}" class="product-thumb" alt="">
 				</a>
 				<form action="/productcatalogue/addtocart" method="post">
 					<button class="card-btn" type="submit" name="productId"
-						th:value="${product.productId}">add to cart</button>
+						th:value="${product.productID}">add to cart</button>
 				</form>
 			</div>
 			<div class="product-info">
 				<h2 class="product-brand">
 					<a
-						th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productId})}">
+						th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productID})}">
 						<td th:text="${product.name}"></td>
 					</a>
 				</h2>

@@ -1,91 +1,84 @@
-package com.fdmgroup.timelessfinds.Model;
+package com.fdmgroup.timelessfinds.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fdmgroup.timelessfinds.model.jointables.CartProduct;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Carts")
 public class Cart {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cart_id")
-	private Long cartId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cartID", unique = true)
+	private long cartID;
 	
-    @Column(name = "Cart_Date", nullable = false)
-    private final Date cartDate = new Date();
+	@Column(name = "isReconciled")
+	private boolean isReconciled;
 	
-	@OneToOne(mappedBy = "cart")
-	@JoinColumn(name = "userId", unique = true)
+	@OneToOne
+	@JoinColumn(name = "fk_userID")
 	private User user;
 	
-	@ManyToMany
-	@JoinTable(name="cart_product", joinColumns=
-	@JoinColumn(name="fk_cart_id"), 	inverseJoinColumns=
-	@JoinColumn(name="fk_product_id")
-	) 
-	private List<Product> products = new ArrayList<>();
+	@OneToMany(mappedBy = "cart")
+	private Set<CartProduct> products = new HashSet<>();
 
-	public Long getCartId() {
-		return cartId;
+	public Cart() {
+		super();
 	}
 
-	public void setCartId(Long cartId) {
-		this.cartId = cartId;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
+	public Cart(long cartID, boolean isReconciled, User user, Set<CartProduct> products) {
+		super();
+		this.cartID = cartID;
+		this.isReconciled = isReconciled;
+		this.user = user;
 		this.products = products;
+	}
+
+	public long getCartID() {
+		return cartID;
+	}
+
+	public boolean isReconciled() {
+		return isReconciled;
 	}
 
 	public User getUser() {
 		return user;
 	}
 
+	public Set<CartProduct> getProducts() {
+		return products;
+	}
+
+	public void setCartID(long cartID) {
+		this.cartID = cartID;
+	}
+
+	public void setReconciled(boolean isReconciled) {
+		this.isReconciled = isReconciled;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public void addProduct(Product product) {
-		products.add(product);
+	public void setProducts(Set<CartProduct> products) {
+		this.products = products;
 	}
 	
-	public void removeProduct(Product product) {
-		products.remove(product);
+	public void addProducts(CartProduct product) {
+		this.products.add(product);
 	}
-	
-	public void updateProductinCart(Product product) {
-		for (int i=0; i < products.size(); i++) {
-			if(products.get(i).getProductId() == product.getProductId()) {
-				products.set(i, product);
-			}
-		}
-	}
-	
-	public String getListOfProduct() {
-		String listOfItems = "";
-		for (Product pdt: products) {
-			listOfItems += pdt.getProductId() +": "+pdt.getName() +", "+ pdt.getPrice()+", "+ pdt.getQuantity() + "\n";
-		}
-		return listOfItems;
-	}
-	
-	
 }

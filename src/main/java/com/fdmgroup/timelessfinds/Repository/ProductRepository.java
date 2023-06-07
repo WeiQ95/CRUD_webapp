@@ -1,27 +1,11 @@
-package com.fdmgroup.timelessfinds.Repository;
-
-import java.util.List;
-import java.util.Optional;
+package com.fdmgroup.timelessfinds.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.fdmgroup.timelessfinds.Model.Product;
-
-import jakarta.transaction.Transactional;
+import com.fdmgroup.timelessfinds.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	public Optional<Product> findById(Long id);
-
-	@Query("SELECT p FROM Product p WHERE p.name LIKE %:searchTerm%")
-	public List<Product> findProductsByMatchingName(String searchTerm);
-
-	@Modifying
-	@Transactional
-	@Query(value = "delete from cart_product c where c.fk_product_id = ?", nativeQuery = true)
-	int deleteFromCartProduct(Long id);
 }

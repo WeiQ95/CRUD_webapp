@@ -1,9 +1,11 @@
-package com.fdmgroup.timelessfinds.Model;
+package com.fdmgroup.timelessfinds.model;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fdmgroup.timelessfinds.model.jointables.OrderProduct;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,115 +13,88 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-
 
 @Entity
-@Table(name = "Orders",
-        uniqueConstraints = { @UniqueConstraint(columnNames = "order_id") })
-public class Order implements Serializable {
+@Table(name = "Orders")
+public class Order {
 
-    private static final long serialVersionUID = -2576670215015463100L;
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "order_id", length = 50)
-    private Long orderId;
-
-    @Column(name = "Order_Date", nullable = false)
-    private final Date orderDate = new Date();
-
-    @Column(name = "Amount", nullable = false)
-    private double amount;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "orderID")
+	private long orderID;
 	
-    @ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@Column(name = "orderDate")
+	private Date orderDate;
+	
+	@Column(name = "grandTotal")
+	private double grandTotal;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_userID")
 	private User user;
+	
+	@OneToMany(mappedBy = "order")
+	private Set<OrderProduct> products = new HashSet<>();
+	
+//	@ManyToMany
+//	@JoinTable(
+//			name = "OrdersProducts", 
+//			joinColumns = @JoinColumn(name = "fk_orderID"),
+//			inverseJoinColumns = @JoinColumn(name = "fk_productID"))
+//	private List<Product> products = new ArrayList<>();
 
-    @Column(name = "Customer_Name", length = 255, nullable = false)
-    private String customerName;
-
-    @Column(name = "Customer_Address", length = 255, nullable = false)
-    private String customerAddress;
-
-    @Column(name = "Customer_Email", length = 128, nullable = false)
-    private String customerEmail;
-
-    @Column(name = "Customer_Phone", length = 128, nullable = false)
-    private String customerPhone;
-
-    public Order() {
+	public Order() {
+		super();
 	}
 
-	public Order(double amount, String customerName, 
-    		     String customerAddress, String customerEmail, String customerPhone) {
-		this.amount = amount;
-		this.customerName = customerName;
-		this.customerAddress = customerAddress;
-		this.customerEmail = customerEmail;
-		this.customerPhone = customerPhone;
+	public Order(long orderID, Date orderDate, double grandTotal, User user, Set<OrderProduct> products) {
+		super();
+		this.orderID = orderID;
+		this.orderDate = orderDate;
+		this.grandTotal = grandTotal;
+		this.user = user;
+		this.products = products;
 	}
 
-	public Long getId() {
-        return orderId;
-    }
+	public long getOrderID() {
+		return orderID;
+	}
 
-    public void setId(Long orderId) {
-        this.orderId = orderId;
-    }
+	public Date getOrderDate() {
+		return orderDate;
+	}
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
-
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
-    public String getCustomerPhone() {
-        return customerPhone;
-    }
-
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
-    }
+	public double getGrandTotal() {
+		return grandTotal;
+	}
 
 	public User getUser() {
 		return user;
+	}
+
+	public Set<OrderProduct> getProducts() {
+		return products;
+	}
+
+	public void setOrderID(long orderID) {
+		this.orderID = orderID;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public void setGrandTotal(double grandTotal) {
+		this.grandTotal = grandTotal;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+	public void setProducts(Set<OrderProduct> products) {
+		this.products = products;
+	}
 }
