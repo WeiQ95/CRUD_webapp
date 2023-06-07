@@ -46,8 +46,7 @@
 				<a th:href="@{/productcatalogue/{name}-{id}(name=${product.name}, id=${product.productID})}"> <img
 					th:src="${product.imageUrl}" class="product-thumb" alt="">
 				</a>
-				<form th:action="@{/productcatalogue/addtocart}" method="post" th:object="${cartItem}">
-					
+				<form action="/productcatalogue/addtocart" method="post">
 					<button class="card-btn" type="submit" name="productID"
 						th:value="${product.productID}">add to cart</button>
 				</form>

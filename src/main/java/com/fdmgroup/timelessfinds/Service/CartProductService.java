@@ -18,10 +18,8 @@ public class CartProductService {
 		this.cartRepository = cartRepository;
 	}
 
-	public void addProductToCart(long cartID, long productID) {
-//		cartProductRepository.save(
-//				new CartProduct(1, cartRepository.findById(cartID), productID, 1)
-//				);
+	public void addProductToCart(CartProduct cartProduct) {
+		cartProductRepository.save(cartProduct);
 	}
 	
 	

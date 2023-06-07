@@ -27,7 +27,6 @@ public class ProductController {
 	@ResponseStatus(HttpStatus.OK)
 	public String getCatalog(Model model) {
 		model.addAttribute("products", productService.findAllProducts());
-//		model.addAttribute("cartItem", new CartProduct());
 		return "catalog";
 	}
 }
